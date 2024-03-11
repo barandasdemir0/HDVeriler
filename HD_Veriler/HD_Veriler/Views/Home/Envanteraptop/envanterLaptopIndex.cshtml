@@ -1,0 +1,73 @@
+﻿@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore
+@model IEnumerable<InventoryLaptop>
+@{
+    ViewData["Title"] = "envanterLaptopIndex";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<!-- start: page -->
+<section class="card">
+    <header class="card-header">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+        </div>
+        <h2 class="card-title">Laptop Bilgileri</h2>
+    </header>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-3">
+                    <a asp-action="envanterLaptopCreate" asp-controller="Home" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Yeni Envanter Laptop Ekle
+                    </a>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped mb-0" id="datatable-editable" style="font-size: 15px;">
+            <thead>
+                <tr>
+                    <th>Marka</th>
+                    <th>Ram</th>
+                    <th>İşletim Sistemi</th>
+                    <th>İşlemci</th>
+                    <th>HDD Depolama</th>
+                    <th>SSD Depolama</th>
+                    <th>Programlar</th>
+                    <th>Düzenle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    string? marka = item.Active ? item.BrandName : "Artık Envanter Bizde Değil";
+                    string arkaPlan = item.Active ? "" : "table-danger";
+                    <tr class="@arkaPlan">
+                        <td>@marka</td>
+                        <td>@Html.DisplayFor(model => item.Ram)</td>
+                        <td>@Html.DisplayFor(model => item.Os)</td>
+                        <td>@Html.DisplayFor(model => item.Cpu)</td>
+                        <td>@Html.DisplayFor(model => item.StorageHDD)</td>
+                        <td>@Html.DisplayFor(model => item.StorageSDD)</td>
+                        <td>@Html.DisplayFor(model => item.Programs)</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-info" href="@Url.Action("envanterLaptopDetails", new { id = item.InventoryId })" title="Detayları Görüntüle">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a class="btn btn-warning" href="@Url.Action("envanterLaptopEdit", new { id = item.InventoryId })" title="Düzenle">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a class="btn btn-danger" href="@Url.Action("envanterLaptopDelete", new { id = item.InventoryId })" title="Sil">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

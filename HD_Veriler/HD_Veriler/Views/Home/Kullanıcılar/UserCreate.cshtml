@@ -1,0 +1,142 @@
+﻿@model User
+@{
+    ViewData["Title"] = "UserCreate";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- start: page -->
+<form class="ecommerce-form action-buttons-fixed" role="form" asp-action="UserCreate" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+
+                    <div class="text-center mb-4">
+                        <h2 class="card-big-info-title">Kullanıcı Bilgileri</h2>
+                        <p class="card-big-info-desc">Kullanıcı bilgilerini tüm ayrıntılar ve gerekli bilgilerle birlikte buraya ekleyin.</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <label class="control-label">Adı Soyadı</label>
+                                <input type="text" asp-for="NameSurname" class="form-control form-control-modern" />
+                                <span asp-validation-for="NameSurname"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Departman Seçiniz</label>
+                                @Html.DropDownList("DepartmanID",
+                                         (IEnumerable<SelectListItem>?)ViewData["departmentList"],
+                                         "Departman Seçiniz",
+                                         new
+                                         {
+                                             @class = "form-control form-control-modern",
+                                         })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">IP Adresini Giriniz</label>
+                                <input type="text" asp-for="IPV4Adress" class="form-control form-control-modern" />
+                                <span asp-validation-for="IPV4Adress"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Telefonunu Giriniz</label>
+                                <input type="number" asp-for="Telephone" class="form-control form-control-modern" />
+                                <span asp-validation-for="Telephone"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Email Adresini Giriniz</label>
+                                <input type="text" asp-for="EMail" class="form-control form-control-modern"  />
+                                <span asp-validation-for="EMail"></span>
+                            </div>
+
+                           
+
+                        </div>
+
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <label class="control-label">Aktif Kullanıcı mı?</label>
+                                <div class="form-check">
+                                    <input type="checkbox" asp-for="Active" class="form-check-input" id="Active" />
+                                    <label class="form-check-label" for="Active">Aktif</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Şifresini Giriniz</label>
+                                <input type="password" asp-for="Password" class="form-control form-control-modern" />
+                                <span asp-validation-for="Password"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Departman Liderimi</label>
+                                <div class="form-check">
+                                    <input type="checkbox" asp-for="DepartmanLeader" class="form-check-input" id="DepartmanLeader" />
+                                    <label class="form-check-label" for="DepartmanLeader">Lider</label>
+                                </div>
+                            </div>
+
+                            <div id="departmentSelectWrapper" style="display:none;">
+                                <div class="form-group">
+                                    <label class="control-label">Lider Olduğu Departmanı Seçiniz</label>
+                                    @Html.DropDownList("LeadingDepartmentID",
+                                             (IEnumerable<SelectListItem>?)ViewData["departmentList"],
+                                             "Departman Seçiniz",
+                                             new
+                                             {
+                                                 @class = "form-control form-control-modern",
+                                             })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">İşe Başlama Tarihi</label>
+                                <input type="date" asp-for="StartDate" class="form-control form-control-modern" />
+                                <span asp-validation-for="StartDate"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6 text-center">
+            <button type="submit" value="KAYDET" class="btn btn-primary btn-lg btn-block" >
+                <i class="bx bx-save"></i> Kullanıcıyı Kaydet
+            </button>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-6 text-center">
+            <a asp-action="KullanicilarIndex" class="btn btn-light btn-lg btn-block">
+                Geri
+            </a>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('#DepartmanLeader').change(function () {
+            if ($(this).is(':checked')) {
+                $('#departmentSelectWrapper').show();
+            } else {
+                $('#departmentSelectWrapper').hide();
+            }
+        });
+    });
+</script>

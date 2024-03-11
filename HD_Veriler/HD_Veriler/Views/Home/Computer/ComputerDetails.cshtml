@@ -1,0 +1,75 @@
+﻿@model ComputerDetail
+@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore;
+
+@{
+    ViewData["Title"] = "ComputerDetails";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <section class="card">
+            <header class="card-header text-center">
+                <h2 class="card-title">@ViewBag.username</h2>
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                </div>
+            </header>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td><strong>Ram:</strong></td>
+                            <td>@Html.DisplayFor(model => model.Ram) GB</td>
+                        </tr>
+                        <tr>
+                            <td><strong>İşletim Sistemi:</strong></td>
+                            <td>@Html.DisplayFor(model => model.Os)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>İşletim Sistemi Seri Numarası:</strong></td>
+                            <td>@Html.DisplayFor(model => model.OsSerialName)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>İşlemci:</strong></td>
+                            <td>@Html.DisplayFor(model => model.Cpu)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HDD:</strong></td>
+                            <td>@Html.DisplayFor(model => model.StorageHDD)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SSD:</strong></td>
+                            <td>@Html.DisplayFor(model => model.StorageSDD)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ekran Kartı:</strong></td>
+                            <td>@Html.DisplayFor(model => model.DisplayCard)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ana Kart:</strong></td>
+                            <td>@Html.DisplayFor(model => model.MotherBoard)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Format Tarihi:</strong></td>
+                            <td>@Model.FormatDate.ToString("dd.MM.yyyy")</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aktif/Pasif:</strong></td>
+                            <td>@Html.DisplayFor(model => model.Active)</td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div class="mt-3 text-center">
+            <a asp-action="ComputerDetailsIndex" class="btn btn-success btn-lg px-5">
+                <i class="bx bx-arrow-back"></i> Bilgisayarlara Geri Dön
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,362 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\bower.json" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\package.json" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\css\global-vars\simple.css" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\css\modify-vars\simple.css" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\css\plugin\plugin.css" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\css\postProcessor\postProcessor.css" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\css\relative-urls\urls.css" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\css\rewrite-urls\urls.css" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\css\rootpath-relative\urls.css" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\css\rootpath-rewrite-urls\urls.css" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\css\rootpath\urls.css" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\css\urls.css" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\console-errors\test-error.txt" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\errors\image-height-error.txt" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\errors\image-size-error.txt" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\errors\image-width-error.txt" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\sourcemaps-disable-annotation\basic.json" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\sourcemaps\basic.json" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\sourcemaps\custom-props.json" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\sourcemaps\index.html" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\less\tsconfig.json" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\make-dir\package.json" />
+    <Content Include="wwwroot\vendor\simple-line-icons\node_modules\pify\package.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\bin\lessc" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\dist\less.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\dist\less.min.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\dist\less.min.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\Gruntfile.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\add-default-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\add-default-options.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\bootstrap.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\bootstrap.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\browser.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\browser.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\cache.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\cache.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\error-reporting.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\error-reporting.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\file-manager.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\file-manager.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\image-size.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\image-size.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\index.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\log-listener.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\log-listener.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\plugin-loader.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\plugin-loader.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\utils.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-browser\utils.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\environment.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\environment.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\file-manager.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\file-manager.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\fs.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\fs.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\image-size.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\image-size.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\index.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\lessc-helper.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\lessc-helper.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\plugin-loader.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\plugin-loader.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\url-file-manager.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less-node\url-file-manager.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\constants.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\constants.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\contexts.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\contexts.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\data\colors.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\data\colors.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\data\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\data\index.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\data\unit-conversions.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\data\unit-conversions.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\default-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\default-options.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\environment\abstract-file-manager.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\environment\abstract-file-manager.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\environment\abstract-plugin-loader.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\environment\abstract-plugin-loader.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\environment\environment-api.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\environment\environment-api.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\environment\environment.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\environment\environment.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\environment\file-manager-api.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\environment\file-manager-api.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\boolean.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\boolean.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\color-blending.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\color-blending.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\color.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\color.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\data-uri.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\data-uri.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\default.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\default.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\function-caller.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\function-caller.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\function-registry.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\function-registry.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\index.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\list.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\list.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\math-helper.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\math-helper.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\math.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\math.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\number.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\number.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\string.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\string.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\svg.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\svg.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\types.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\functions\types.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\import-manager.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\import-manager.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\index.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\less-error.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\less-error.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\logger.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\logger.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\parse-tree.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\parse-tree.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\parse.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\parse.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\parser\chunker.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\parser\chunker.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\parser\parser-input.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\parser\parser-input.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\parser\parser.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\parser\parser.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\plugin-manager.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\plugin-manager.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\render.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\render.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\source-map-builder.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\source-map-builder.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\source-map-output.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\source-map-output.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\transform-tree.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\transform-tree.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\anonymous.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\anonymous.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\assignment.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\assignment.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\atrule.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\atrule.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\attribute.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\attribute.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\call.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\call.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\color.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\color.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\combinator.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\combinator.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\comment.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\comment.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\condition.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\condition.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\debug-info.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\debug-info.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\declaration.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\declaration.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\detached-ruleset.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\detached-ruleset.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\dimension.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\dimension.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\element.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\element.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\expression.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\expression.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\extend.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\extend.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\import.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\import.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\index.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\javascript.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\javascript.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\js-eval-node.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\js-eval-node.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\keyword.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\keyword.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\media.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\media.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\mixin-call.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\mixin-call.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\mixin-definition.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\mixin-definition.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\namespace-value.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\namespace-value.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\negative.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\negative.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\node.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\node.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\operation.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\operation.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\paren.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\paren.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\property.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\property.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\quoted.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\quoted.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\ruleset.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\ruleset.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\selector.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\selector.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\unicode-descriptor.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\unicode-descriptor.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\unit.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\unit.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\url.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\url.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\value.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\value.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\variable-call.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\variable-call.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\variable.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\tree\variable.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\utils.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\utils.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\extend-visitor.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\extend-visitor.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\import-sequencer.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\import-sequencer.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\import-visitor.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\import-visitor.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\index.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\join-selector-visitor.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\join-selector-visitor.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\set-tree-visibility-visitor.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\set-tree-visibility-visitor.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\to-css-visitor.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\to-css-visitor.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\visitor.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\lib\less\visitors\visitor.js.map" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\README.md" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\common.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\generator\benchmark.config.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\generator\generate.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\generator\runner.config.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\generator\runner.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\generator\template.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\console-errors\test-error.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\errors\image-height-error.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\errors\image-size-error.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\errors\image-width-error.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\global-vars\simple.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\imports\urls.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\imports\urls2.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\modify-vars\imports\simple2.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\modify-vars\simple.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\nested-gradient-with-svg-gradient\mixin-consumer.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\nested-gradient-with-svg-gradient\svg-gradient-mixin.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\plugin\plugin.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\plugin\plugin.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\postProcessor\postProcessor.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\relative-urls\urls.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\rewrite-urls\urls.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\rootpath-relative\urls.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\rootpath-rewrite-urls\urls.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\rootpath\urls.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\less\urls.less" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-browser-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-browser-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-console-errors.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-errors-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-errors-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-filemanagerPlugin-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-filemanagerPlugin.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-global-vars-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-global-vars-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-legacy-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-legacy-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-main-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-main-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-modify-vars-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-modify-vars-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-no-js-errors-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-no-js-errors-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-postProcessorPlugin-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-postProcessorPlugin.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-preProcessorPlugin-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-preProcessorPlugin.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-production-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-production-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-relative-urls-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-relative-urls-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-rewrite-urls-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-rewrite-urls-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-rootpath-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-rootpath-relative-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-rootpath-relative-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-rootpath-rewrite-urls-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-rootpath-rewrite-urls-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-rootpath-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-strict-units-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-strict-units-spec.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-VisitorPlugin-options.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\browser\runner-VisitorPlugin.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\less-test.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\modify-vars.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\plugins\filemanager\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\plugins\postprocess\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\plugins\preprocess\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\plugins\visitor\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\README.md" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\make-dir\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\make-dir\license" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\make-dir\readme.md" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\pify\index.js" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\pify\license" />
+    <None Include="wwwroot\vendor\simple-line-icons\node_modules\pify\readme.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SqlServer.Server" Version="1.0.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.3.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\vendor\simple-line-icons\node_modules\less\test\test-es6.ts" />
+    <TypeScriptCompile Include="wwwroot\vendor\simple-line-icons\node_modules\make-dir\index.d.ts" />
+  </ItemGroup>
+
+</Project>

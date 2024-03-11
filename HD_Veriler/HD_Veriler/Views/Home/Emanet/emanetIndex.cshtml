@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Entrusted>
+
+@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore
+@{
+    ViewData["Title"] = "emanetIndex";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<!-- start: page -->
+<section class="card">
+    <header class="card-header">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+        </div>
+
+        <h2 class="card-title">Emanet Bilgileri</h2>
+    </header>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <a asp-action="emanetCreate" asp-controller="Home" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Yeni Emanet Ekle
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped mb-0" id="datatable-editable" style="font-size: 15px;">
+                <thead>
+                    <tr>
+                        <th>Kullanıcı Adı</th>
+                        <th>Ekipman Adı</th>
+                        <th>Başlangıç Tarihi</th>
+                        <th>Bitiş Tarihi</th>
+                        <th>Aktif</th>
+                        <th>Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        string? isim = context.Users.SingleOrDefault(x => x.UserID == item.UserID)?.NameSurname;
+                        string? laptop = context.InventoryLaptops.SingleOrDefault(x => x.InventoryId == item.InventoryId)?.BrandName;
+                        string? another = context.OtherInventorys.SingleOrDefault(x => x.OtherInventoryId == item.OtherInventoryId)?.BrandName;
+
+                        string? alinanEkipmanAdi = laptop ?? another;
+                        <tr>
+                            <td>@isim</td>
+                            <td>@alinanEkipmanAdi</td>
+                            <td>@item.StartDate.ToString("dd.MM.yyyy")</td>
+                            <td>@item.EndDate.ToString("dd.MM.yyyy")</td>
+                            <td>
+                                @if (!item.Active)
+                                {
+                                    <span style="color: crimson;">Emanet Alındı</span>
+                                }
+                                else
+                                {
+                                    <span style="color: green;">Hala Kullanıcıda</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-info" asp-action="emanetDetails" asp-route-id="@item.EntrustedId" title="Detayları Görüntüle">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a class="btn btn-warning" asp-action="emanetEdit" asp-route-id="@item.EntrustedId" title="Düzenle">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger" asp-action="emanetDelete" asp-route-id="@item.EntrustedId" title="Sil">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

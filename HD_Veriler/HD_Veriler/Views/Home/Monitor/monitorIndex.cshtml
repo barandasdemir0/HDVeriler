@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MonitorDetail>
+@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore
+
+@{
+    ViewData["Title"] = "monitorIndex";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<section class="card">
+    <header class="card-header">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+        </div>
+
+        <h2 class="card-title">Monitör Bilgileri</h2>
+    </header>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-3">
+                    <a asp-action="MonitorCreate" asp-controller="Home" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Yeni Monitör Ekle
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped mb-0" id="datatable-editable" style="font-size: 15px;">
+                <thead>
+                    <tr>
+                        <th>Kullanıcı Adı</th>
+                        <th>Ekran</th>
+                        <th>Giriş</th>
+                        <th>Çözünürlük</th>
+                        <th>Durum</th>
+                        <th>Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        string? isim = context.Users.SingleOrDefault(x => x.UserID == item.UserID)?.NameSurname;
+                        string userName = !item.Durum ? "Boşta" : string.IsNullOrEmpty(isim) ? "Boşta" : isim;
+                        string background = !item.Durum ? "table-danger" : "";
+                        <tr class="@background">
+                            <td>@userName</td>
+                            <td>@Html.DisplayFor(model => item.Screen)</td>
+                            <td>@Html.DisplayFor(model => item.Input)</td>
+                            <td>@Html.DisplayFor(model => item.Resolution)</td>
+                            <td>@Html.DisplayFor(model => item.Durum)</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-info" asp-action="MonitorDetails" asp-route-id="@item.MonitorId" title="Detayları Görüntüle">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a class="btn btn-warning" asp-action="MonitorEdit" asp-route-id="@item.MonitorId" title="Düzenle">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger" asp-action="MonitorDelete" asp-route-id="@item.MonitorId" title="Sil">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

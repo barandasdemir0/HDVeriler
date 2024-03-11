@@ -1,0 +1,77 @@
+﻿@model IEnumerable<User>
+@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore
+@{
+    ViewData["Title"] = "PersonelDetailsIndex";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<style>
+    .card {
+        border: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #f8f9fa; /* Arka plan rengi */
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px; /* Kartlar arasında boşluk */
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+        }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #343a40;
+    }
+
+    .card-subtitle {
+        font-size: 1rem;
+        color: #6c757d;
+        margin-bottom: 1rem; /* Alt başlık ile arasındaki boşluk */
+    }
+
+    .leader {
+        font-size: 1.2rem;
+        color: #28a745;
+        font-weight: bold;
+        margin-top: 1rem; /* Lider ismi ile arasındaki boşluk */
+    }
+
+    .icon {
+        font-size: 2rem;
+    }
+</style>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-6 col-xl-12 pb-2 pb-lg-0 mb-4 mb-lg-0">
+            <a asp-action="ScoreIndex" asp-controller="Score" asp-route-id="@item.UserID" />
+            <div class="card">
+                <div class="card-body py-4">
+                    <div class="row align-items-center">
+                        <div class="col-6 col-md-4">
+                            <h3 class="card-title my-0">Kullanıcı</h3>
+                            <strong class="text-color-dark">@item.NameSurname</strong>
+                        </div>
+                        <div class="col-md-4 text-start text-md-right pe-md-4 mt-4 mt-md-0">
+                            <button class="btn btn-primary" href="@Url.Action("ScoreIndex", new { id = item.UserID })">
+                                Detaylar
+                            </button>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    }
+</div>
+

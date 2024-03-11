@@ -1,0 +1,80 @@
+﻿@model IEnumerable<OtherInventory>
+@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore
+@{
+    ViewData["Title"] = "envanterMalzemeIndex";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<!-- start: page -->
+<section class="card">
+    <header class="card-header">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+        </div>
+
+        <h2 class="card-title">Envanter Bilgileri</h2>
+    </header>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <a asp-action="envanterMalzemeCreate" asp-controller="Home" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Yeni Envanter Ekle
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped mb-0" id="datatable-editable" style="font-size: 15px;">
+                <thead>
+                    <tr>
+                        <th>Kullanıcı Adı</th>
+                        <th>Departman</th>
+                        <th>Envanter Adı</th>
+                        <th>Marka</th>
+                        <th>Ekleme Tarihi</th>
+                        <th>Aktif</th>
+                        <th>Özellikler</th>
+                        <th>Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        string isim = context.Users.SingleOrDefault(x => x.UserID == item.UserID)?.NameSurname ?? "Boşta";
+                        string departman = context.Departmans.SingleOrDefault(x => x.DepartmanID == item.DepartmanID)?.DepartmanName ?? "Boşta";
+                        string background = item.Active ? "" : "table-danger";
+                        <tr class="@background">
+                            <td>@isim @if (!item.Active)
+                                {
+                                    <br />
+
+                                    <span class="text-danger">Artık Olmayan Envanter</span>
+                                }</td>
+                            <td>@departman</td>
+                            <td>@item.InventoryName</td>
+                            <td>@item.BrandName</td>
+                            <td>@item.AddDate.ToString("dd.MM.yyyy")</td>
+                            <td>@Html.DisplayFor(model => item.Active)</td>
+                            <td>@item.Feature</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-info" href="@Url.Action("envanterMalzemeDetails", new { id = item.OtherInventoryId })" title="Detayları Görüntüle">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a class="btn btn-warning" href="@Url.Action("envanterMalzemeEdit", new { id = item.OtherInventoryId })" title="Düzenle">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger" href="@Url.Action("envanterMalzemeDelete", new { id = item.OtherInventoryId })" title="Sil">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

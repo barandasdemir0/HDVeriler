@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HD_Veriler", "HD_Veriler\HD_Veriler.csproj", "{322F12AC-2445-4EED-B3A4-B1385960E511}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{322F12AC-2445-4EED-B3A4-B1385960E511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322F12AC-2445-4EED-B3A4-B1385960E511}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322F12AC-2445-4EED-B3A4-B1385960E511}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322F12AC-2445-4EED-B3A4-B1385960E511}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78DE35E8-546D-46AD-A5D3-71AF0DFF36C0}
+	EndGlobalSection
+EndGlobal

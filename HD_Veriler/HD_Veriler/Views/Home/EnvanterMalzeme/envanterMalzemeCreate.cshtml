@@ -1,0 +1,111 @@
+﻿@model OtherInventory
+@{
+    ViewData["Title"] = "envanterMalzemeCreate";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- start: page -->
+<form class="ecommerce-form action-buttons-fixed" role="form" asp-action="envanterMalzemeCreate" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+
+                    <div class="text-center mb-4">
+                        <h2 class="card-big-info-title">Envanter Bilgileri</h2>
+                        <p class="card-big-info-desc">Envanter bilgilerini tüm ayrıntılar ve gerekli bilgilerle birlikte buraya ekleyin.</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <label class="control-label">Departman Seçiniz</label>
+                                @Html.DropDownList("DepartmanID",
+                                         (IEnumerable<SelectListItem>?)ViewData["departmentList"],
+                                         "Departman Seçiniz",
+                                         new
+                                         {
+                                             @class = "form-control form-control-modern",
+                                         })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Kullanıcı Seçiniz</label>
+                                @Html.DropDownList("UserID",
+                                         (IEnumerable<SelectListItem>?)ViewData["userList"],
+                                         "Kullanıcı Seçiniz",
+                                         new
+                                         {
+                                             @class = "form-control form-control-modern",
+                                         })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Envanter Adı</label>
+                                <input type="text" asp-for="InventoryName" class="form-control form-control-modern" />
+                                <span asp-validation-for="InventoryName"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Marka</label>
+                                <input type="text" asp-for="BrandName" class="form-control form-control-modern" />
+                                <span asp-validation-for="BrandName"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <!-- Diğer form alanları buraya gelebilir -->
+
+                            <div class="form-group" style="width: 100%;">
+                                <label class="control-label">Özellikleri</label>
+                                <textarea asp-for="Feature" class="form-control form-control-modern" style="width: 100%; height: 140px;"></textarea>
+                                <span asp-validation-for="Feature"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Durum</label>
+                                <div class="form-check">
+                                    <input type="checkbox" asp-for="Active" class="form-check-input" />
+                                    <label class="form-check-label">Aktif</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Eklenme Tarihi</label>
+                                <input type="date" asp-for="AddDate" class="form-control form-control-modern" />
+                                <span asp-validation-for="AddDate"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+    </div>
+
+
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6 text-center">
+            <button type="submit" value="KAYDET" class="btn btn-primary btn-lg btn-block">
+                <i class="bx bx-save"></i> Envanter Malzemeyi Kaydet
+            </button>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-6 text-center">
+            <a asp-action="envanterMalzemeIndex" class="btn btn-light btn-lg btn-block">
+                Geri
+            </a>
+        </div>
+    </div>
+
+  
+</form>
+<!-- end: page -->

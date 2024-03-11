@@ -1,0 +1,56 @@
+﻿@model MonitorDetail
+@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore;
+@{
+    ViewData["Title"] = "MonitorDetails";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <section class="card card-modern">
+            <header class="card-header">
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                </div>
+                <div class="actions text-center">
+                    <h2 class="card-title">@ViewBag.username</h2>
+                </div>
+            </header>
+            <div class="card-body">
+                <table class="table table-responsive-md mb-0">
+                    <tbody style="font-size: 15px;">
+                        <tr>
+                            <td><strong>Monitörü Kaç İnç:</strong></td>
+                            <td>@Html.DisplayFor(model => model.Screen) İNÇ</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Monitör Girişi Nasıl:</strong></td>
+                            <td>@Html.DisplayFor(model => model.Input)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ekran Çözünürlüğü:</strong></td>
+                            <td>@Html.DisplayFor(model => model.Resolution)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Monitör Seri No:</strong></td>
+                            <td>@Html.DisplayFor(model => model.Serino)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aktif/Pasif:</strong></td>
+                            <td>@Html.DisplayFor(model => model.Durum)</td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div class="mt-3 text-center">
+            <a asp-action="monitorIndex" class="btn btn-success btn-lg px-5">
+                <i class="bx bx-arrow-back"></i> Monitörlere Geri Dön
+            </a>
+        </div>
+    </div>
+</div>

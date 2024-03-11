@@ -1,0 +1,133 @@
+﻿@model ComputerDetail
+@{
+    ViewData["Title"] = "ComputerEdit";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- start: page -->
+<form class="ecommerce-form action-buttons-fixed" role="form" asp-action="ComputerEdit" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+
+                    <div class="text-center mb-4">
+                        <h2 class="card-big-info-title">Bilgisayar Bilgileri</h2>
+                        <p class="card-big-info-desc">Kullanıcı bilgisayar bilgilerini tüm ayrıntılar ve gerekli bilgilerle birlikte buraya ekleyin.</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <label class="control-label">Kullanıcı Seçiniz</label>
+                                @Html.DropDownList("UserID",
+                                         (IEnumerable<SelectListItem>?)ViewData["userList"],
+                                         "Kullanıcı Seçiniz",
+                                         new
+                                         {
+                                             @class = "form-control form-control-modern",
+                                         })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Ram</label>
+                                <input type="number" asp-for="Ram" class="form-control form-control-modern" />
+                                <span asp-validation-for="Ram"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">İşletim Sistemi</label>
+                                <input type="text" asp-for="Os" class="form-control form-control-modern" />
+                                <span asp-validation-for="Os"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">İşletim Sistemi Key</label>
+                                <input type="text" asp-for="OsSerialName" class="form-control form-control-modern" />
+                                <span asp-validation-for="OsSerialName"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">İşlemcisini Giriniz</label>
+                                <input type="text" asp-for="Cpu" class="form-control form-control-modern" />
+                                <span asp-validation-for="Cpu"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                          
+
+                            <div class="form-group">
+                                <label class="control-label">HDD Depolama</label>
+                                <input type="text" asp-for="StorageHDD" class="form-control form-control-modern" required />
+                                <span asp-validation-for="StorageHDD"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">SSD Depolama</label>
+                                <input type="text" asp-for="StorageSDD" class="form-control form-control-modern" />
+                                <span asp-validation-for="StorageSDD"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Ekran Kartı</label>
+                                <input type="text" asp-for="DisplayCard" class="form-control form-control-modern" />
+                                <span asp-validation-for="DisplayCard"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Anakart</label>
+                                <input type="text" asp-for="MotherBoard" class="form-control form-control-modern" />
+                                <span asp-validation-for="MotherBoard"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <div class="form-group">
+                                <label class="control-label">Format Tarihi</label>
+                                <input type="date" asp-for="FormatDate" class="form-control form-control-modern" />
+                                <span asp-validation-for="FormatDate"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Durum</label>
+                                <div class="form-check">
+                                    <input type="checkbox" asp-for="Active" class="form-check-input" />
+                                    <label class="form-check-label">Aktif</label>
+                                </div>
+                            </div>
+
+                 
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+    </div>
+    <input type="hidden" asp-for="ComputerId" />
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6 text-center">
+            <button type="submit" value="KAYDET" class="btn btn-success btn-lg btn-block" >
+                <i class="bx bx-save"></i> Bilgisayarı Güncelle
+            </button>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-6 text-center">
+            <a asp-action="ComputerDetailsIndex" class="btn btn-light btn-lg btn-block">
+                Geri
+            </a>
+        </div>
+    </div>
+</form>
+<!-- end: page -->

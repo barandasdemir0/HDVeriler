@@ -1,0 +1,11 @@
+﻿@inject IHttpContextAccessor Accessor
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+@{
+    var username = Accessor.HttpContext.Session.GetString("NameSurname");
+}
+<h1>Welcome, @username!</h1>
+

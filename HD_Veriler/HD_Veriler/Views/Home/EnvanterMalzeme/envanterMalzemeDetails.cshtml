@@ -1,0 +1,72 @@
+﻿@model OtherInventory
+@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore;
+@{
+    ViewData["Title"] = "envanterMalzemeDetails";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <section class="card">
+            <header class="card-header text-center">
+                <h2 class="card-title">@ViewBag.username</h2>
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                </div>
+            </header>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td><strong>Departman:</strong></td>
+                            <td>
+                                @{
+                                    string? departman = context.Departmans.FirstOrDefault(x => x.DepartmanID == Model.DepartmanID)?.DepartmanName;
+                                    @departman
+                                }
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Kullanıcı:</strong></td>
+                            <td>
+                                @{
+                                    string? isim = context.Users.FirstOrDefault(x => x.UserID == Model.UserID)?.NameSurname;
+                                    @isim
+                                }
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Marka:</strong></td>
+                            <td>@Html.DisplayFor(model => model.BrandName)</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Ekleme Tarihi:</strong></td>
+                            <td>@Model.AddDate.ToString("dd.MM.yyyy")</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Aktif/Pasif:</strong></td>
+                            <td>@Html.DisplayFor(model => model.Active)</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Özellikler:</strong></td>
+                            <td>@Html.DisplayFor(model => model.Feature)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div class="mt-3 text-center">
+            <a asp-action="envanterMalzemeIndex" class="btn btn-success btn-lg px-5">
+                <i class="bx bx-arrow-back"></i> Envanterlere Geri Dön
+            </a>
+        </div>
+    </div>
+</div>

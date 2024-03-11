@@ -1,0 +1,67 @@
+﻿@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore
+@model IEnumerable<ChangeEquipment>
+
+@{
+    ViewData["Title"] = "DonanimDegismeIndex";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<!-- start: page -->
+<section class="card">
+    <header class="card-header">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+        </div>
+        <h2 class="card-title">Değişim Bilgileri</h2>
+    </header>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <a asp-action="DonanimDegismeCreate" asp-controller="Home" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Yeni Değişim Ekle
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.UserID)</th>
+                        <th>@Html.DisplayNameFor(model => model.EquipmentName)</th>
+                        <th>@Html.DisplayNameFor(model => model.ChangeDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.Property)</th>
+                        <th>@Html.DisplayNameFor(model => model.Reason)</th>
+                        <th>Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @{
+                                string? isim = context.Users.SingleOrDefault(x => x.UserID == item.UserID)?.NameSurname;
+                            }
+                            <td>@isim</td>
+                            <td>@Html.DisplayFor(model => item.EquipmentName)</td>
+                            <td>@item.ChangeDate.ToString("dd.MM.yyyy")</td>
+                            <td>@Html.DisplayFor(model => item.Property)</td>
+                            <td>@Html.DisplayFor(model => item.Reason)</td>
+                            <td class="actions" style="font-weight:bold">
+                                <a asp-action="DonanimDegismeDetails" asp-route-id="@item.EquipmentId" class="btn btn-info" title="Detayları Görüntüle">
+                                    <i class="fas fa-circle-info"></i>
+                                </a>
+                                <a asp-action="DonanimDegismeEdit" asp-route-id="@item.EquipmentId" class="btn btn-warning" title="Düzenle">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <!-- Silme işlemi buraya eklenebilir -->
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

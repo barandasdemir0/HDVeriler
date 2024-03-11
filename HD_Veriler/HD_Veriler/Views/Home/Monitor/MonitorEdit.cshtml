@@ -1,0 +1,95 @@
+﻿@model MonitorDetail
+@{
+    ViewData["Title"] = "MonitorEdit";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- start: page -->
+<form class="ecommerce-form action-buttons-fixed" role="form" asp-action="MonitorEdit" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+
+                    <div class="text-center mb-4">
+                        <h2 class="card-big-info-title">Monitör Bilgileri</h2>
+                        <p class="card-big-info-desc">Kullanıcı Monitör bilgilerini tüm ayrıntılar ve gerekli bilgilerle birlikte buraya ekleyin.</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <label class="control-label">Kullanıcı Seçiniz</label>
+                                @Html.DropDownList("UserID",
+                                         (IEnumerable<SelectListItem>?)ViewData["userList"],
+                                         "Kullanıcı Seçiniz",
+                                         new
+                                         {
+                                             @class = "form-control form-control-modern",
+                                         })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">İNÇ BOYUTU</label>
+                                <input type="number" asp-for="Screen" class="form-control form-control-modern" />
+                                <span asp-validation-for="Screen"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Girişi Nasıl</label>
+                                <input type="text" asp-for="Input" class="form-control form-control-modern" />
+                                <span asp-validation-for="Input"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label">Ekran Çözünürlüğü</label>
+                                <input type="text" asp-for="Resolution" class="form-control form-control-modern" />
+                                <span asp-validation-for="Resolution"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Durum</label>
+                                <div class="form-check">
+                                    <input type="checkbox" asp-for="Durum" class="form-check-input" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Seri No</label>
+                                <input type="text" asp-for="Serino" class="form-control form-control-modern" />
+                                <span asp-validation-for="Serino"></span>
+                            </div>
+
+                          
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <input type="hidden" asp-for="MonitorId" />
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6 text-center">
+            <button type="submit" value="KAYDET" class="btn btn-success btn-lg btn-block" asp-action="MonitorEdit">
+                <i class="bx bx-save"></i> Monitörü Güncelle
+            </button>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-6 text-center">
+            <a asp-action="monitorIndex" class="btn btn-light btn-lg btn-block">
+                Geri
+            </a>
+        </div>
+    </div>
+</form>
+<!-- end: page -->

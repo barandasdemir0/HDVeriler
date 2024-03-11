@@ -1,0 +1,8 @@
+﻿@model UQuestion
+
+<div class="mb-3">
+    <label class="form-label">@Model.Question</label>
+    <input type="hidden" name="QuestionID" value="@Model.QuestionID" />
+    <input type="number" name="Point" class="form-control rounded-start" min="0" max="100" placeholder="Puan">
+    <input type="text" name="Answer" class="form-control rounded-end" placeholder="Cevap giriniz">
+</div>

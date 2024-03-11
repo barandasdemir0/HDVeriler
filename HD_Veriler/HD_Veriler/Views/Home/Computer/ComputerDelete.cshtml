@@ -1,0 +1,62 @@
+﻿@model ComputerDetail
+@using HD_Veriler.Helpers;
+@using Microsoft.EntityFrameworkCore;
+
+@{
+    ViewData["Title"] = "ComputerDelete";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<!-- start: page -->
+<section class="card">
+    <header class="card-header">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+        </div>
+        <h2 class="card-title">Bilgisayar Bilgileri</h2>
+    </header>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped mb-0" id="datatable-editable">
+                <thead>
+                    <tr>
+                        <th>Kullanıcı Adı</th>
+                        <th>Ram</th>
+                        <th>İşletim Sistemi</th>
+                        <th>İşlemci</th>
+                        <th>HDD Depolama</th>
+                        <th>SSD Depolama</th>
+                        <th>Ekran Kartı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        string? isim = context.Users.FirstOrDefault(x => x.UserID == Model.UserID)?.NameSurname;
+                    }
+                    <tr>
+                        <td>@isim</td>
+                        <td>@Html.DisplayFor(model => model.Ram)</td>
+                        <td>@Html.DisplayFor(model => model.Os)</td>
+                        <td>@Html.DisplayFor(model => model.Cpu)</td>
+                        <td>@Html.DisplayFor(model => model.StorageHDD)</td>
+                        <td>@Html.DisplayFor(model => model.StorageSDD)</td>
+                        <td>@Html.DisplayFor(model => model.DisplayCard)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <form asp-action="ComputerDelete" method="post">
+            <input type="hidden" asp-for="ComputerId" />
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="text-center">
+                        <input type="submit" value="Bilgisayarı Sil" onclick="return confirm ('Silmek İstediğinden emin misin?')" class="btn btn-danger">
+                        <a asp-action="computerDetailsIndex" class="btn btn-secondary ml-2">Geri</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

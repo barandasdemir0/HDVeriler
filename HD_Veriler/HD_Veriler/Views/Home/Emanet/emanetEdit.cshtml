@@ -1,0 +1,102 @@
+﻿@model Entrusted
+@{
+    ViewData["Title"] = "emanetEdit";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- start: page -->
+<form class="ecommerce-form action-buttons-fixed" role="form" asp-action="emanetEdit" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+
+                    <div class="text-center mb-4">
+                        <h2 class="card-big-info-title">Emanet Bilgileri</h2>
+                        <p class="card-big-info-desc">Emanet bilgilerini tüm ayrıntılar ve gerekli bilgilerle birlikte buraya Güncelleyin.</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label">Laptop Seçiniz</label>
+                                @Html.DropDownList("InventoryId",
+                                         (IEnumerable<SelectListItem>?)ViewData["laptopList"],
+                                         "Laptop Seçiniz",
+                                         new
+                                         {
+                                             @class = "form-control form-control-modern",
+                                         })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Diğer Envanter Seçiniz</label>
+                                @Html.DropDownList("OtherInventoryId",
+                                         (IEnumerable<SelectListItem>?)ViewData["otherList"],
+                                         "Diğer Envanter Seçiniz",
+                                         new
+                                         {
+                                             @class = "form-control form-control-modern",
+                                         })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Kullanıcı Seçiniz</label>
+                                @Html.DropDownList("UserID",
+                                         (IEnumerable<SelectListItem>?)ViewData["userList"],
+                                         "Kullanıcı Seçiniz",
+                                         new
+                                         {
+                                             @class = "form-control form-control-modern",
+                                         })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label">Durum</label>
+                                <div class="form-check">
+                                    <input type="checkbox" asp-for="Active" class="form-check-input" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Alınma Tarihi</label>
+                                <input type="date" asp-for="StartDate" class="form-control form-control-modern" />
+                                <span asp-validation-for="StartDate"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Geri Gelme Tarihi</label>
+                                <input type="date" asp-for="EndDate" class="form-control form-control-modern" />
+                                <span asp-validation-for="EndDate"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <input type="hidden" asp-for="EntrustedId" />
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6 text-center">
+            <button type="submit" value="KAYDET" class="btn btn-success btn-lg btn-block" asp-action="emanetEdit">
+                <i class="bx bx-save"></i> Emanet Güncelle
+            </button>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-6 text-center">
+            <a asp-action="emanetIndex" class="btn btn-light btn-lg btn-block">
+                Geri
+            </a>
+        </div>
+    </div>
+</form>
+<!-- end: page -->

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<User>
+
+@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore
+
+@{
+    ViewData["Title"] = "KullanicilarIndex";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<section class="card">
+    <header class="card-header">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+        </div>
+        <h2 class="card-title">Kullanıcı Bilgileri</h2>
+    </header>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-6 text-right">
+                <a asp-action="UserCreate" asp-controller="Home" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Yeni Kullanıcı Ekle
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped mb-0" id="datatable-editable" style="font-size: 15px;">
+                <thead>
+                    <tr>
+                        <th>Kullanıcı Adı</th>
+                        <th>Departman Adı</th>
+                        <th>Telefon</th>
+                        <th>E-posta</th>
+                        <th>Aktif</th>
+                        <th>Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        string? isim = context.Users.SingleOrDefault(x => x.UserID == item.UserID)?.NameSurname;
+                        string? departman = context.Departmans.SingleOrDefault(x => x.DepartmanID == item.DepartmanID)?.DepartmanName;
+
+                        <tr style="background-color: @(item.Active ? "transparent" : "crimson")">
+                            <td> @(item.Active ? isim : @isim + " Eski Kullanıcı")</td>
+                            <td>@departman</td>
+                            <td>@Html.DisplayFor(model => item.Telephone)</td>
+                            <td>@Html.DisplayFor(model => item.EMail)</td>
+                            <td>
+                                @if (item.Active)
+                                {
+                                    <span style="color: green;">Aktif</span>
+                                }
+                                else
+                                {
+                                    <span style="color: crimson;">Pasif</span>
+                                }
+                            </td>
+                            <td class="text-right">
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-info" asp-action="UserDetails" asp-route-id="@item.UserID" title="Detayları Görüntüle">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a class="btn btn-warning" asp-action="UserEdit" asp-route-id="@item.UserID" title="Düzenle">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger" asp-action="UserDelete" asp-route-id="@item.UserID" title="Sil">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,47 @@
+﻿@model Score
+@{
+    ViewData["Title"] = "ScoreIndex";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Kullanıcı: @ViewBag.UserName</h2>
+
+                    <form role="form" asp-action="ScoreIndex" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="UserID" />
+
+                        <div class="mb-3">
+                            <label class="form-label">Soru</label>
+                            <input type="text" asp-for="QuestionID" class="form-control rounded-pill" placeholder="Soru giriniz">
+                            <span asp-validation-for="QuestionID"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Puan</label>
+                            <input type="number" asp-for="Point" class="form-control rounded-pill" min="0" max="100">
+                            <span asp-validation-for="Point"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Cevap</label>
+                            <textarea asp-for="Answer" class="form-control rounded" rows="5" placeholder="Cevap giriniz"></textarea>
+                            <span asp-validation-for="Answer"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="UserID" />
+                        <div class="text-center">
+                            <button type="submit" value="KAYDET" class="btn btn-primary btn-lg rounded-pill mb-3">Kaydet</button><br>
+                            <a href="PersonelDetailsIndex" class="btn btn-secondary rounded-pill">Geri</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

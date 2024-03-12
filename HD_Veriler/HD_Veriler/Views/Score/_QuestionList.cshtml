@@ -2,16 +2,16 @@
 
 @if (Model != null && Model.Any())
 {
-    foreach (var soru in Model)
+    @foreach (var questionId in ViewBag.Sorular)
     {
         <div class="mb-3">
-            <label class="form-label">@soru.Question</label>
-            <input type="hidden" name="UserID" value="@ViewBag.UserID" />
-            <input type="hidden" name="QuestionID" value="@soru.QuestionID" />
-            <input type="number" name="Point" class="form-control rounded-start" min="0" max="100" placeholder="Puan">
-            <input type="text" name="Answer" class="form-control rounded-end" placeholder="Cevap giriniz">
+            <label class="form-label">@questionId.Question</label>
+            <input type="hidden" name="QuestionID" value="@questionId.QuestionID" />
+            <input type="text" name="Answers" class="form-control rounded-start" placeholder="Cevap giriniz">
+            <input type="number" name="Points" class="form-control rounded-end" min="0" max="100" placeholder="Puan">
         </div>
     }
+
 }
 else
 {

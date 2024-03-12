@@ -71,20 +71,21 @@ namespace HD_Veriler.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ScoreIndex(Score model)
         {
-            // Formdan gelen UserID değerini manuel olarak Score modeline atayın
-
-
             if (ModelState.IsValid)
             {
-                var scoreDTO = _dependencyService.GetMapper().Map<Score>(model);
-                await _dependencyService.GetScoreRepository().AddAsync(scoreDTO);
-                TempData["Message"] = "Puan Eklendi";
+               
+                    var scoreDTO = _dependencyService.GetMapper().Map<Score>(model);
+                    await _dependencyService.GetScoreRepository().AddAsync(scoreDTO);
+                
+
+                TempData["Message"] = "Puanlar Eklendi";
                 return RedirectToAction(nameof(PersonelDetailsIndex));
             }
 
-            TempData["Message"] = "Puan Eklenemedi";
+            TempData["Message"] = "Puanlar Eklenemedi";
             return View(model);
         }
+
         #endregion
 
         #region soru crud işlemleri

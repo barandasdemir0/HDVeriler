@@ -1,0 +1,19 @@
+﻿@model IEnumerable<UQuestion>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var soru in Model)
+    {
+        <div class="mb-3">
+            <label class="form-label">@soru.Question</label>
+            <input type="hidden" name="UserID" value="@ViewBag.UserID" />
+            <input type="hidden" name="QuestionID" value="@soru.QuestionID" />
+            <input type="number" name="Point" class="form-control rounded-start" min="0" max="100" placeholder="Puan">
+            <input type="text" name="Answer" class="form-control rounded-end" placeholder="Cevap giriniz">
+        </div>
+    }
+}
+else
+{
+    <p class="text-danger">Sorular yüklenemedi.</p>
+}

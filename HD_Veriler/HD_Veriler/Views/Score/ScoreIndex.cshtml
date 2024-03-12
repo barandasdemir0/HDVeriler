@@ -2,8 +2,9 @@
 @{
     ViewData["Title"] = "ScoreIndex";
     Layout = "~/Views/Shared/DefaultLayout.cshtml";
-    var sorular = ViewBag.Sorular as IEnumerable<UQuestion>; // Soruları ViewBag aracılığıyla alın
 }
+
+@using Microsoft.AspNetCore.Mvc.Rendering
 
 <div class="container">
     <div class="row justify-content-center">
@@ -16,26 +17,9 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="UserID" />
 
-                        @if (sorular != null)
-                        {
-                            foreach (var soru in sorular)
-                            {
-                                <div class="mb-3">
-                                    <label class="form-label">@soru.Question</label>
-                                    <div class="input-group">
-                                        <input type="hidden" name="ScoreID" value="@Model.ScoreID" />
-                                        <input type="hidden" name="UserID" value="@Model.UserID" />
-                                        <input type="hidden" name="QuestionID" value="@soru.QuestionID" />
-                                        <input type="number" name="Point" class="form-control rounded-start" min="0" max="100" placeholder="Puan">
-                                        <input type="text" name="Answer" class="form-control rounded-end" placeholder="Cevap giriniz">
-                                    </div>
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <p class="text-danger">Sorular yüklenemedi.</p>
-                        }
+                        @await Html.PartialAsync("_QuestionList", ViewBag.Sorular as IEnumerable<UQuestion>)
+
+
 
                         <div class="text-center mt-4">
                             <button type="submit" value="KAYDET" class="btn btn-primary btn-lg rounded-pill px-5">Kaydet</button>

@@ -20,5 +20,9 @@ namespace HD_Veriler.Models
 
         [DisplayName("Puan")]
         public int Point { get; set; }
+
+        [DisplayName("Tarih")]
+        public DateTime AnswerDate { get; set; }
+
     }
 }

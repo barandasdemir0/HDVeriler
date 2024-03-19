@@ -73,10 +73,11 @@ namespace HD_Veriler.Controllers
         {
             if (ModelState.IsValid)
             {
-               
-                    var scoreDTO = _dependencyService.GetMapper().Map<Score>(model);
-                    await _dependencyService.GetScoreRepository().AddAsync(scoreDTO);
-                
+                // Score nesnesini kullanarak işlemleri gerçekleştir
+                model.AnswerDate = DateTime.Now;
+
+                var scoreDTO = _dependencyService.GetMapper().Map<Score>(model);
+                await _dependencyService.GetScoreRepository().AddAsync(scoreDTO);
 
                 TempData["Message"] = "Puanlar Eklendi";
                 return RedirectToAction(nameof(PersonelDetailsIndex));
@@ -85,6 +86,7 @@ namespace HD_Veriler.Controllers
             TempData["Message"] = "Puanlar Eklenemedi";
             return View(model);
         }
+
 
         #endregion
 

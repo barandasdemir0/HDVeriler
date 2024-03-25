@@ -1,0 +1,37 @@
+﻿@model List<HD_Veriler.Models.Score>
+
+@{
+    ViewData["Title"] = "ListScores";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<h1>ListScores</h1>
+
+<div class="container">
+    <h2 class="text-center">Kullanıcı Puanları</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Puan ID</th>
+                <th>Kullanıcı ID</th>
+                <th>Soru ID</th>
+                <th>Cevap</th>
+                <th>Puan</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var score in Model)
+            {
+                <tr>
+                    <td>@score.ScoreID</td>
+                    <td>@score.UserID</td>
+                    <td>@score.QuestionID</td>
+                    <td>@score.Answer</td>
+                    <td>@score.Point</td>
+                    <td>@score.AnswerDate.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

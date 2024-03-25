@@ -110,6 +110,19 @@ namespace HD_Veriler.Controllers
         }
 
 
+
+        public async Task<IActionResult> ListScores()
+        {
+            // Tüm puanları al
+            var scores = await _dependencyService.GetScoreRepository().GetAllAsync();
+
+            // Modeli listeye dönüştürerek view'a gönder
+            return View(scores);
+        }
+
+
+
+
         #endregion
 
         #region soru crud işlemleri

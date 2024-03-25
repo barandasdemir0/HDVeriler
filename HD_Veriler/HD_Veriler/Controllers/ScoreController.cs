@@ -69,22 +69,44 @@ namespace HD_Veriler.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ScoreIndex(Score model)
+        public async Task<IActionResult> ScoreIndex(List<int> QuestionIDs, List<string> Answers, List<int> Points, Score model)
         {
             if (ModelState.IsValid)
             {
-                // Score nesnesini kullanarak işlemleri gerçekleştir
-                model.AnswerDate = DateTime.Now;
+                // Girilen soruların sayısını kontrol etmek
+                if (QuestionIDs.Count != Answers.Count || QuestionIDs.Count != Points.Count)
+                {
+                    TempData["Message"] = "Soruların cevapları ve puanları eşleşmiyor.";
+                    return View();
+                }
 
-                var scoreDTO = _dependencyService.GetMapper().Map<Score>(model);
-                await _dependencyService.GetScoreRepository().AddAsync(scoreDTO);
+                // Score nesnelerini oluşturmak için döngü
+                List<Score> scores = new List<Score>();
+                for (int i = 0; i < QuestionIDs.Count; i++)
+                {
+                    Score score = new Score
+                    {
+                        UserID = model.UserID, // Burada kullanıcı kimliği nasıl alınacaksa o şekilde atanmalıdır
+                        QuestionID = QuestionIDs[i],
+                        Answer = Answers[i],
+                        Point = Points[i],
+                        AnswerDate = DateTime.Now
+                    };
+                    scores.Add(score);
+                }
+
+                // Score nesnelerini ekleyin
+                foreach (var score in scores)
+                {
+                    await _dependencyService.GetScoreRepository().AddAsync(score);
+                }
 
                 TempData["Message"] = "Puanlar Eklendi";
                 return RedirectToAction(nameof(PersonelDetailsIndex));
             }
 
             TempData["Message"] = "Puanlar Eklenemedi";
-            return View(model);
+            return View();
         }
 
 

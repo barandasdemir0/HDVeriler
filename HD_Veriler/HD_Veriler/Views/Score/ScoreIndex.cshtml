@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h2 class="text-center mb-4">Kullanıcı: @ViewBag.UserName</h2>
 
-                    <form role="form" asp-controller="score" asp-action="ScoreIndex" method="post">
+                    <form role="form" asp-action="ScoreIndex" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="UserID" />
                         @foreach (var soru in ViewBag.Sorular)
@@ -21,24 +21,28 @@
                                 <!-- Soru alanı -->
                                 <div class="form-group">
                                     <label class="control-label">Soru: @soru.Question</label>
-                                    <input type="hidden" name="QuestionID" value="@soru.QuestionID" />
+                                    <!-- Her bir soru için gizli input olarak QuestionID'yi alın -->
+                                    <input type="hidden" name="QuestionIDs[]" value="@soru.QuestionID" />
                                 </div>
 
                                 <!-- Cevap alanı -->
                                 <div class="form-group">
                                     <label class="control-label">Cevap</label>
-                                    <textarea name="Answer" class="form-control form-control-modern" rows="5"></textarea>
-                                    <span asp-validation-for="Answer" class="text-danger"></span>
+                                    <!-- Her bir soru için Answer inputunu alın -->
+                                    <textarea name="Answers[]" class="form-control form-control-modern" rows="5"></textarea>
+                                    <span class="text-danger"></span>
                                 </div>
 
                                 <!-- Puan alanı -->
                                 <div class="form-group">
                                     <label class="control-label">Puan</label>
-                                    <input name="Point" class="form-control form-control-modern" type="number" min="0" max="100" placeholder="Puan">
-                                    <span asp-validation-for="Point" class="text-danger"></span>
+                                    <!-- Her bir soru için Point inputunu alın -->
+                                    <input name="Points[]" class="form-control form-control-modern" type="number" min="0" max="100" placeholder="Puan">
+                                    <span class="text-danger"></span>
                                 </div>
                             </div>
                         }
+
 
                         <div class="row justify-content-center mt-4">
                             <div class="col-lg-6 text-center">

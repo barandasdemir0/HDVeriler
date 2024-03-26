@@ -132,10 +132,21 @@ namespace HD_Veriler.Controllers
                 scores = scores.Where(s => s.UserID == id).ToList();
             }
 
-            return View(scores);
+            if (scores.Any())
+            {
+                return View(scores);
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Veri bulunamadı.";
+                return View();
+            }
         }
 
-      
+
+
+
+
 
 
 

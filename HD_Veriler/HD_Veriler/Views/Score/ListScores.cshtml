@@ -23,7 +23,7 @@
                     <div class="btn-group">
                         @for (int month = 1; month <= 12; month++)
                         {
-                            <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("ListScores", new { id = Model.FirstOrDefault()?.UserID, year = year, month = month })'">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)</button>
+                            <button type="button" class="btn btn-secondary" onclick="filterScores(@Model.FirstOrDefault()?.UserID, @year, @month)">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)</button>
                         }
                     </div>
                 </div>
@@ -31,29 +31,55 @@
         }
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Puan ID</th>
-                <th>Kullanıcı ID</th>
-                <th>Soru ID</th>
-                <th>Cevap</th>
-                <th>Puan</th>
-                <th>Tarih</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var score in Model)
-            {
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@score.ScoreID</td>
-                    <td>@score.UserID</td>
-                    <td>@score.QuestionID</td>
-                    <td>@score.Answer</td>
-                    <td>@score.Point</td>
-                    <td>@score.AnswerDate.ToString("dd.MM.yyyy")</td>
+                    <th>Puan ID</th>
+                    <th>Kullanıcı ID</th>
+                    <th>Soru ID</th>
+                    <th>Cevap</th>
+                    <th>Puan</th>
+                    <th>Tarih</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var score in Model)
+                {
+                    <tr>
+                        <td>@score.ScoreID</td>
+                        <td>@score.UserID</td>
+                        <td>@score.QuestionID</td>
+                        <td>@score.Answer</td>
+                        <td>@score.Point</td>
+                        <td>@score.AnswerDate.ToString("dd.MM.yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>@ViewBag.ErrorMessage</p>
+    }
 </div>
+
+<script>
+    function filterScores(userId, year, month) {
+        var url = '@Url.Action("ListScores", "Score")' + '?id=' + userId + '&year=' + year + '&month=' + month;
+
+        // AJAX ile kontrol edelim
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (data) {
+                // Veri varsa sayfayı güncelle
+                $('body').html(data);
+            },
+            error: function () {
+                alert("Veriye erişirken bir hata oluştu.");
+            }
+        });
+    }
+</script>

@@ -1,14 +1,36 @@
 ﻿@model IEnumerable<Score>
+@using System.Globalization
 
 @{
     ViewData["Title"] = "ListScores";
     Layout = "~/Views/Shared/DefaultLayout.cshtml";
 }
 
-<h1>ListScores</h1>
+<h1>FilteredScores</h1>
 
 <div class="container">
-    <h2 class="text-center">Kullanıcı Puanları</h2>
+    <h2 class="text-center">Tarih Bazında Filtrelenmiş Kullanıcı Puanları</h2>
+    <div class="row mb-4">
+        @{
+            int startYear = 2024; // Başlangıç yılı isteğe bağlı olarak belirlenebilir
+            int currentYear = DateTime.Now.Year;
+
+            // Başlangıç yılından mevcut yıla kadar olan yılları dinamik olarak oluştur
+            for (int year = currentYear; year >= startYear; year--)
+            {
+                <div class="col-md-2">
+                    <h5>@year</h5>
+                    <div class="btn-group">
+                        @for (int month = 1; month <= 12; month++)
+                        {
+                            <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("ListScores", new { id = Model.FirstOrDefault()?.UserID, year = year, month = month })'">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)</button>
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
     <table class="table">
         <thead>
             <tr>

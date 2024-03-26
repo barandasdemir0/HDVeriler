@@ -110,20 +110,32 @@ namespace HD_Veriler.Controllers
         }
 
 
-
-        public async Task<IActionResult> ListScores(int? id)
+        public async Task<IActionResult> ListScores(int? id, int? year, int? month)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            // Kullanıcının puanlarını al
-            var scores = await _dependencyService.GetScoreRepository().GetAllAsync();
-            scores = scores.Where(s => s.UserID == id).ToList();
+            IEnumerable<Score> scores;
+
+            if (year != null && month != null)
+            {
+                // Belirli bir yıl ve ayda filtreleme yap
+                scores = await _dependencyService.GetScoreRepository().GetAllAsync();
+                scores = scores.Where(s => s.AnswerDate.Year == year && s.AnswerDate.Month == month && s.UserID == id).ToList();
+            }
+            else
+            {
+                // Kullanıcının tüm puanlarını al
+                scores = await _dependencyService.GetScoreRepository().GetAllAsync();
+                scores = scores.Where(s => s.UserID == id).ToList();
+            }
 
             return View(scores);
         }
+
+      
 
 
 

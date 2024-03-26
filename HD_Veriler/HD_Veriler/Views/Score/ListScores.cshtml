@@ -64,7 +64,6 @@
         <p>@ViewBag.ErrorMessage</p>
     }
 </div>
-
 <script>
     function filterScores(userId, year, month) {
         var url = '@Url.Action("ListScores", "Score")' + '?id=' + userId + '&year=' + year + '&month=' + month;
@@ -73,6 +72,7 @@
         $.ajax({
             url: url,
             type: "GET",
+            dataType: "html",
             success: function (data) {
                 // Veri varsa sayfayı güncelle
                 $('body').html(data);
@@ -83,3 +83,4 @@
         });
     }
 </script>
+

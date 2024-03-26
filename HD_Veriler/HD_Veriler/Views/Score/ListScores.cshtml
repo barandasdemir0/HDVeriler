@@ -1,9 +1,12 @@
 ﻿@model IEnumerable<Score>
 @using System.Globalization
+@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore;
 
 @{
     ViewData["Title"] = "ListScores";
     Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
 }
 
 <h1>FilteredScores</h1>
@@ -11,12 +14,32 @@
 <div class="container">
     <h2 class="text-center">Tarih Bazında Filtrelenmiş Kullanıcı Puanları</h2>
     <div class="row mb-4">
+        <div class="col-md-2">
+            <h5>Yıl</h5>
+            <select id="yearDropdown" class="form-select">
+                @{
+                    int startYear = 2022; // Başlangıç yılı isteğe bağlı olarak belirlenebilir
+                    int currentYear = DateTime.Now.Year;
+
+                    for (int year = currentYear; year >= startYear; year--)
+                    {
+                        <option value="@year">@year</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-10">
+            <button type="button" class="btn btn-primary" onclick="filterScores()">Filtrele</button>
+        </div>
+    </div>
+
+    <div class="row mb-4">
         @{
-            int startYear = 2024; // Başlangıç yılı isteğe bağlı olarak belirlenebilir
-            int currentYear = DateTime.Now.Year;
+            int startYear2 = 2024; // İkinci döngü için başlangıç yılı
+            int currentYear2 = DateTime.Now.Year;
 
             // Başlangıç yılından mevcut yıla kadar olan yılları dinamik olarak oluştur
-            for (int year = currentYear; year >= startYear; year--)
+            for (int year = currentYear2; year >= startYear2; year--)
             {
                 <div class="col-md-2">
                     <h5>@year</h5>
@@ -48,9 +71,14 @@
                 @foreach (var score in Model)
                 {
                     <tr>
-                        <td>@score.ScoreID</td>
-                        <td>@score.UserID</td>
-                        <td>@score.QuestionID</td>
+                        @{
+                            string? user = context.Users.FirstOrDefault(u => u.UserID == score.UserID)?.NameSurname;
+
+                            string? soru = context.uQuestions.FirstOrDefault(u => u.QuestionID == score.QuestionID)?.Question;
+                        }
+                        <td>@score.ScoreID</td>                     
+                        <td>@user</td>
+                        <td>@soru</td>
                         <td>@score.Answer</td>
                         <td>@score.Point</td>
                         <td>@score.AnswerDate.ToString("dd.MM.yyyy")</td>
@@ -83,4 +111,3 @@
         });
     }
 </script>
-

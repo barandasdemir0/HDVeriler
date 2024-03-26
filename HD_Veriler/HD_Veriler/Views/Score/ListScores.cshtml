@@ -9,89 +9,70 @@
     var context = DbContextHelper.CreateContext();
 }
 
-<h1>FilteredScores</h1>
-
 <div class="container">
-    <h2 class="text-center">Tarih Bazında Filtrelenmiş Kullanıcı Puanları</h2>
     <div class="row mb-4">
-        <div class="col-md-2">
-            <h5>Yıl</h5>
-            <select id="yearDropdown" class="form-select">
+        <div class="col-md-12">
+            <h5>Yıllar ve Aylar</h5>
+            <div class="row">
                 @{
                     int startYear = 2022; // Başlangıç yılı isteğe bağlı olarak belirlenebilir
                     int currentYear = DateTime.Now.Year;
 
                     for (int year = currentYear; year >= startYear; year--)
                     {
-                        <option value="@year">@year</option>
+                        <div class="col-md-2">
+                            <h6>@year</h6>
+                            <div class="btn-group-vertical">
+                                @for (int month = 1; month <= 12; month++)
+                                {
+                                    <button type="button" class="btn btn-secondary" onclick="filterScores(@Model.FirstOrDefault()?.UserID, @year, @month)">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)</button>
+                                }
+                            </div>
+                        </div>
                     }
                 }
-            </select>
-        </div>
-        <div class="col-md-10">
-            <button type="button" class="btn btn-primary" onclick="filterScores()">Filtrele</button>
+            </div>
         </div>
     </div>
 
-    <div class="row mb-4">
-        @{
-            int startYear2 = 2024; // İkinci döngü için başlangıç yılı
-            int currentYear2 = DateTime.Now.Year;
-
-            // Başlangıç yılından mevcut yıla kadar olan yılları dinamik olarak oluştur
-            for (int year = currentYear2; year >= startYear2; year--)
-            {
-                <div class="col-md-2">
-                    <h5>@year</h5>
-                    <div class="btn-group">
-                        @for (int month = 1; month <= 12; month++)
-                        {
-                            <button type="button" class="btn btn-secondary" onclick="filterScores(@Model.FirstOrDefault()?.UserID, @year, @month)">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)</button>
-                        }
-                    </div>
-                </div>
-            }
+    <div id="scoreDetails">
+        @if (Model != null && Model.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Kullanıcı ID</th>
+                        <th>Soru ID</th>
+                        <th>Cevap</th>
+                        <th>Puan</th>
+                        <th>Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var score in Model)
+                    {
+                        <tr>
+                            @{
+                                string? user = context.Users.FirstOrDefault(u => u.UserID == score.UserID)?.NameSurname;
+                                string? question = context.uQuestions.FirstOrDefault(q => q.QuestionID == score.QuestionID)?.Question;
+                            }
+                            <td>@user</td>
+                            <td>@question</td>
+                            <td>@score.Answer</td>
+                            <td>@score.Point</td>
+                            <td>@score.AnswerDate.ToString("dd.MM.yyyy")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>@ViewBag.ErrorMessage</p>
         }
     </div>
-
-    @if (Model != null && Model.Any())
-    {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Puan ID</th>
-                    <th>Kullanıcı ID</th>
-                    <th>Soru ID</th>
-                    <th>Cevap</th>
-                    <th>Puan</th>
-                    <th>Tarih</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var score in Model)
-                {
-                    <tr>
-                        @{
-                            string? user = context.Users.FirstOrDefault(u => u.UserID == score.UserID)?.NameSurname;
-
-                            string? soru = context.uQuestions.FirstOrDefault(u => u.QuestionID == score.QuestionID)?.Question;
-                        }
-                        <td>@score.ScoreID</td>                     
-                        <td>@user</td>
-                        <td>@soru</td>
-                        <td>@score.Answer</td>
-                        <td>@score.Point</td>
-                        <td>@score.AnswerDate.ToString("dd.MM.yyyy")</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p>@ViewBag.ErrorMessage</p>
-    }
 </div>
+
 <script>
     function filterScores(userId, year, month) {
         var url = '@Url.Action("ListScores", "Score")' + '?id=' + userId + '&year=' + year + '&month=' + month;
@@ -102,8 +83,15 @@
             type: "GET",
             dataType: "html",
             success: function (data) {
-                // Veri varsa sayfayı güncelle
-                $('body').html(data);
+                // Veri varsa tabloyu güncelle
+                var scoreDetails = $('#scoreDetails');
+                if (scoreDetails.find('table').length > 0) {
+                    // Tablo zaten varsa, içeriği güncelle
+                    scoreDetails.find('table').replaceWith($(data).find('table'));
+                } else {
+                    // Tablo yoksa, içeriği ekle
+                    scoreDetails.html(data);
+                }
             },
             error: function () {
                 alert("Veriye erişirken bir hata oluştu.");

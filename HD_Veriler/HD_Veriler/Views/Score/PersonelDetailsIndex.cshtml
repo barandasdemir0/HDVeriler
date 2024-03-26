@@ -60,9 +60,10 @@
                         <div class="col-md-4 text-start text-md-right pe-md-4 mt-4 mt-md-0">
                             <a class="btn btn-primary" asp-action="ScoreIndex" asp-controller="Score" asp-route-id="@item.UserID">Detaylar</a>
                         </div>
-                        <div class="col-md-4 text-start text-md-right pe-md-4 mt-4 mt-md-0">
-                            <a class="btn btn-primary" asp-action="ListScores" asp-controller="Score" asp-route-id="@item.UserID">Puanlar</a>
-                        </div>
+                        <a class="btn btn-info" href="@Url.Action("ListScores", new { id = item.UserID })" title="Detayları Puanlar">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        
                     </div>
                 </div>
             </div>

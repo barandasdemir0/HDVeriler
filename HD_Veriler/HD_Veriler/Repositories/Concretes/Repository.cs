@@ -38,7 +38,10 @@ namespace HD_Veriler.Repositories.Concretes
             await _context.SaveChangesAsync();
         }
 
-      
+
+
+ 
+
     }
 
 }

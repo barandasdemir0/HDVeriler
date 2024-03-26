@@ -111,14 +111,21 @@ namespace HD_Veriler.Controllers
 
 
 
-        public async Task<IActionResult> ListScores()
+        public async Task<IActionResult> ListScores(int? id)
         {
-            // Tüm puanları al
-            var scores = await _dependencyService.GetScoreRepository().GetAllAsync();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            // Modeli listeye dönüştürerek view'a gönder
+            // Kullanıcının puanlarını al
+            var scores = await _dependencyService.GetScoreRepository().GetAllAsync();
+            scores = scores.Where(s => s.UserID == id).ToList();
+
             return View(scores);
         }
+
+
 
 
 

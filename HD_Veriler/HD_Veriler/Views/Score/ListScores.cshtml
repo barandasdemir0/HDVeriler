@@ -1,4 +1,4 @@
-﻿@model List<HD_Veriler.Models.Score>
+﻿@model IEnumerable<Score>
 
 @{
     ViewData["Title"] = "ListScores";
@@ -29,7 +29,7 @@
                     <td>@score.QuestionID</td>
                     <td>@score.Answer</td>
                     <td>@score.Point</td>
-                    <td>@score.AnswerDate.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td>@score.AnswerDate.ToString("dd.MM.yyyy")</td>
                 </tr>
             }
         </tbody>

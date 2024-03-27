@@ -144,7 +144,10 @@ namespace HD_Veriler.Controllers
         }
 
 
-
+        public IActionResult deneme()
+        {
+            return View();
+        }
 
 
 

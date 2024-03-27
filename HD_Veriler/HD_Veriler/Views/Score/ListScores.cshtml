@@ -10,55 +10,53 @@
 }
 
 <div class="container">
-    <div class="container">
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <h5>Years and Months</h5>
-                <div class="list-group">
-                    @{
-                        int startYear = 2022; // Start year can be optionally set
-                        int currentYear = DateTime.Now.Year;
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h2 class="text-primary text-center mb-4">Yıllar ve Aylar</h2>
+            <div class="list-group">
+                @{
+                    int startYear = 2022; // Start year can be optionally set
+                    int currentYear = DateTime.Now.Year;
 
-                        for (int year = currentYear; year >= startYear; year--)
-                        {
-                            <div class="list-group-item">
-                                <h6>@year</h6>
-                                <div class="btn-group" role="group">
-                                    @for (int month = 1; month <= 12; month++)
-                                    {
-                                        <button type="button" class="btn btn-primary mb-2" onclick="filterScores(@Model.FirstOrDefault()?.UserID, @year, @month)">
-                                            @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)
-                                        </button>
-                                    }
-                                </div>
+                    for (int year = currentYear; year >= startYear; year--)
+                    {
+                        <div class="list-group-item">
+                            <h4 class="mb-0">@year</h4>
+                            <div class="btn-group btn-group-lg d-flex justify-content-center" role="group">
+                                @for (int month = 1; month <= 12; month++)
+                                {
+                                    <button type="button" class="btn btn-primary mx-1 my-1" onclick="filterScores(@Model.FirstOrDefault()?.UserID, @year, @month)">
+                                        @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)
+                                    </button>
+                                }
                             </div>
-                        }
+                        </div>
                     }
-                </div>
+                }
             </div>
         </div>
+    </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="scoreModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title" id="scoreModalLabel">Score Details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="scoreDetails">
-                        @if (Model != null && Model.Any())
-                        {
-                            <table class="table table-striped">
+    <!-- Modal -->
+    <div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="scoreModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="scoreModalLabel">Puan Detayları</h2>
+                 
+                </div>
+                <div class="modal-body" id="scoreDetails">
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover table-dark">
                                 <thead>
                                     <tr>
-                                        <th>User ID</th>
-                                        <th>Question ID</th>
-                                        <th>Answer</th>
-                                        <th>Point</th>
-                                        <th>Date</th>
+                                        <th scope="col">Kullanıcı</th>
+                                        <th scope="col">Soru</th>
+                                        <th scope="col">Cevap</th>
+                                        <th scope="col">Puan</th>
+                                        <th scope="col">Tarih</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,22 +76,42 @@
                                     }
                                 </tbody>
                             </table>
-                        }
-                        else
-                        {
-                            <p>@ViewBag.ErrorMessage</p>
-                        }
-                    </div>
-                    <div class="modal-footer">
-                        <button id="closeModalBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+                        </div>
+                    }
+                   
+                </div>
+                <div class="modal-footer">
+                    <button id="closeModalBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Puanlara Geri Dön</button>
                 </div>
             </div>
         </div>
-
-
-
+    </div>
 </div>
+
+
+<!-- Error Modal -->
+<!-- Error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-black text-white">
+                <h5 class="modal-title" id="errorModalLabel">Hata</h5>
+                <button type="button" class="close" id="closeErrorModalBtn" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="errorModalBody"></p>
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 <script>
     $(document).ready(function () {
@@ -102,7 +120,14 @@
             // Close the modal
             $('#scoreModal').modal('hide');
         });
+
+        // Function to handle click event on the "Close" button for the error modal
+        $('#closeErrorModalBtn').click(function () {
+            // Close the error modal
+            $('#errorModal').modal('hide');
+        });
     });
+
 
     function filterScores(userId, year, month) {
         var url = '@Url.Action("ListScores", "Score")' + '?id=' + userId + '&year=' + year + '&month=' + month;
@@ -126,9 +151,12 @@
                 // Modalı aç
                 $('#scoreModal').modal('show');
             },
-            error: function () {
-                alert("An error occurred while accessing the data.");
+            error: function (xhr, status, error) {
+                // Hata modalını aç ve hata mesajını modal içine yerleştir
+                $('#errorModalBody').text("Henüz veri girilmedi ve ya verilere ulaşılamıyor");
+                $('#errorModal').modal('show');
             }
         });
     }
+
 </script>

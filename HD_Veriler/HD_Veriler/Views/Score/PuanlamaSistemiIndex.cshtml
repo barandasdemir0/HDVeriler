@@ -7,78 +7,27 @@
     var context = DbContextHelper.CreateContext();
 }
 
-
-<style>
-    .card {
-        border: none;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        border-radius: 10px;
-        overflow: hidden;
-        background: #f8f9fa; /* Arka plan rengi */
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px; /* Kartlar arasında boşluk */
-    }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
-        }
-
-    .card-body {
-        padding: 2rem;
-    }
-
-    .card-title {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-        color: #343a40;
-    }
-
-    .card-subtitle {
-        font-size: 1rem;
-        color: #6c757d;
-        margin-bottom: 1rem; /* Alt başlık ile arasındaki boşluk */
-    }
-
-    .leader {
-        font-size: 1.2rem;
-        color: #28a745;
-        font-weight: bold;
-        margin-top: 1rem; /* Lider ismi ile arasındaki boşluk */
-    }
-
-    .icon {
-        font-size: 2rem;
-    }
-</style>
-
-<div class="row">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     @foreach (var item in Model)
     {
         var userCount = await context.Users.CountAsync(u => u.DepartmanID == item.DepartmanID);
         var departmentLider = await context.Users.SingleOrDefaultAsync(u => u.LeadingDepartmentID == item.DepartmanID);
         var liderNameSurname = departmentLider?.NameSurname;
 
-        <div class="col-lg-6 col-xl-12 pb-2 pb-lg-0 mb-4 mb-lg-0">
-            <a asp-action="PersonelDetailsIndex" asp-controller="Score" asp-route-departmanId="@item.DepartmanID" />
-            <div class="card">
-                <div class="card-body py-4">
-                    <div class="row align-items-center">
-                        <div class="col-6 col-md-4">
-                            <h3 class="card-title my-0">Departman</h3>
-                            <strong class="text-color-dark">@item.DepartmanName</strong>
-                        </div>
-                        <div class="col-6 col-md-4 border border-top-0 border-end-0 border-bottom-0 border-color-light-grey py-3">
-                            <h3 class="card-title text-color-success line-height-2 my-0">Lider</h3>
-                            <strong class="leader">@liderNameSurname</strong>
-                        </div>
-                        <div class="col-md-4 text-start text-md-right pe-md-4 mt-4 mt-md-0">
-                            <i class="icon bx bx-cart-alt bg-primary rounded-circle text-color-light"></i>
-                        </div>
+        <div class="col mb-4 mr-4">
+            <!-- Kartları saran div'e mr-4 sınıfını ekledik -->
+            <a asp-action="PersonelDetailsIndex" asp-controller="Score" asp-route-departmanId="@item.DepartmanID" class="text-decoration-none">
+                <div class="card border-0 shadow-sm" style="background-color: #f8f9fa;">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3 text-primary">Departman: @item.DepartmanName</h5>
+                        <p class="card-text mb-0">Lider: @liderNameSurname</p>
+                        <p class="card-text mb-0">Personel Sayısı: @userCount</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <button type="button" class="btn btn-lg btn-danger rounded-pill">Detaylar</button>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     }
 </div>

@@ -7,47 +7,50 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow-sm rounded">
+        <div class="col-lg-12">
+            <div class="card shadow rounded border-0" style="background-color: #f8f9fa;">
                 <div class="card-body">
-                    <h2 class="text-center mb-4">Kullanıcı: @ViewBag.UserName</h2>
+                    <h2 class="text-center mb-4" style="color: #343a40;">Kullanıcı: @ViewBag.UserName</h2>
 
                     <form role="form" asp-action="ScoreIndex" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="UserID" />
-                        @foreach (var soru in ViewBag.Sorular)
-                        {
-                            <div class="mb-3">
-                                <!-- Soru alanı -->
-                                <div class="form-group">
-                                    <label class="control-label">Soru: @soru.Question</label>
-                                    <!-- Her bir soru için gizli input olarak QuestionID'yi alın -->
-                                    <input type="hidden" name="QuestionIDs[]" value="@soru.QuestionID" />
-                                </div>
 
-                                <!-- Cevap alanı -->
-                                <div class="form-group">
-                                    <label class="control-label">Cevap</label>
-                                    <!-- Her bir soru için Answer inputunu alın -->
-                                    <textarea name="Answers[]" class="form-control form-control-modern" rows="5" required></textarea>
-                                    <span class="text-danger"></span>
-                                </div>
+                        <div class="row row-cols-1 row-cols-md-2 g-4">
+                            @foreach (var soru in ViewBag.Sorular)
+                            {
+                                <div class="col mb-4">
+                                    <div class="card h-100" style="background-color: #fff;">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold" style="color: #007bff;">Soru: @soru.Question</h5>
+                                            <!-- Her bir soru için gizli input olarak QuestionID'yi alın -->
+                                            <input type="hidden" name="QuestionIDs[]" value="@soru.QuestionID" />
 
-                                <!-- Puan alanı -->
-                                <div class="form-group">
-                                    <label class="control-label">Puan</label>
-                                    <!-- Her bir soru için Point inputunu alın -->
-                                    <input name="Points[]" class="form-control form-control-modern" type="number" min="0" max="100" placeholder="Puan" required>
-                                    <span class="text-danger"></span>
-                                </div>
-                            </div>
-                        }
+                                            <!-- Cevap alanı -->
+                                            <div class="mb-3">
+                                                <label for="Answer" class="form-label" style="color: #6c757d;">Cevap</label>
+                                                <!-- Her bir soru için Answer inputunu alın -->
+                                                <textarea name="Answers[]" class="form-control" rows="5" style="background-color: #f1f3f6;" required></textarea>
+                                                <span class="text-danger"></span>
+                                            </div>
 
+                                            <!-- Puan alanı -->
+                                            <div class="mb-3">
+                                                <label for="Point" class="form-label" style="color: #6c757d;">Puan</label>
+                                                <!-- Her bir soru için Point inputunu alın -->
+                                                <input name="Points[]" class="form-control" type="number" min="0" max="100" placeholder="Puan" style="background-color: #f1f3f6;" required>
+                                                <span class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
 
                         <div class="row justify-content-center mt-4">
                             <div class="col-lg-6 text-center">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                    <i class="bx bx-save"></i> Tüm Puanları Kaydet
+                                <button type="submit" class="btn btn-primary btn-lg rounded-pill" style="background-color: #007bff; border-color: #007bff;">
+                                    <i class="bx bx-save me-2"></i> Tüm Puanları Kaydet
                                 </button>
                             </div>
                         </div>

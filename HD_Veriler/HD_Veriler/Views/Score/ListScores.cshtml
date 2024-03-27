@@ -12,10 +12,10 @@
 <div class="container">
     <div class="row mb-4">
         <div class="col-md-12">
-            <h5>Yıllar ve Aylar</h5>
+            <h5>Years and Months</h5>
             <div class="row">
                 @{
-                    int startYear = 2022; // Başlangıç yılı isteğe bağlı olarak belirlenebilir
+                    int startYear = 2022; // Start year can be optionally set
                     int currentYear = DateTime.Now.Year;
 
                     for (int year = currentYear; year >= startYear; year--)
@@ -25,7 +25,7 @@
                             <div class="btn-group-vertical">
                                 @for (int month = 1; month <= 12; month++)
                                 {
-                                    <button type="button" class="btn btn-secondary" onclick="filterScores(@Model.FirstOrDefault()?.UserID, @year, @month)">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)</button>
+                                    <button type="button" class="btn btn-primary mb-2" onclick="filterScores(@Model.FirstOrDefault()?.UserID, @year, @month)">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)</button>
                                 }
                             </div>
                         </div>
@@ -35,45 +35,72 @@
         </div>
     </div>
 
-    <div id="scoreDetails">
-        @if (Model != null && Model.Any())
-        {
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Kullanıcı ID</th>
-                        <th>Soru ID</th>
-                        <th>Cevap</th>
-                        <th>Puan</th>
-                        <th>Tarih</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var score in Model)
+    <!-- Modal -->
+    <div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="scoreModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="scoreModalLabel">Score Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="scoreDetails">
+                    @if (Model != null && Model.Any())
                     {
-                        <tr>
-                            @{
-                                string? user = context.Users.FirstOrDefault(u => u.UserID == score.UserID)?.NameSurname;
-                                string? question = context.uQuestions.FirstOrDefault(q => q.QuestionID == score.QuestionID)?.Question;
-                            }
-                            <td>@user</td>
-                            <td>@question</td>
-                            <td>@score.Answer</td>
-                            <td>@score.Point</td>
-                            <td>@score.AnswerDate.ToString("dd.MM.yyyy")</td>
-                        </tr>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Question ID</th>
+                                    <th>Answer</th>
+                                    <th>Point</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var score in Model)
+                                {
+                                    <tr>
+                                        @{
+                                            string? user = context.Users.FirstOrDefault(u => u.UserID == score.UserID)?.NameSurname;
+                                            string? question = context.uQuestions.FirstOrDefault(q => q.QuestionID == score.QuestionID)?.Question;
+                                        }
+                                        <td>@user</td>
+                                        <td>@question</td>
+                                        <td>@score.Answer</td>
+                                        <td>@score.Point</td>
+                                        <td>@score.AnswerDate.ToString("dd.MM.yyyy")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <p>@ViewBag.ErrorMessage</p>
-        }
+                    else
+                    {
+                        <p>@ViewBag.ErrorMessage</p>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button id="closeModalBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
     </div>
+
+
 </div>
 
 <script>
+    $(document).ready(function () {
+        // Function to handle click event on the "Close" button
+        $('#closeModalBtn').click(function () {
+            // Close the modal
+            $('#scoreModal').modal('hide');
+        });
+    });
+
     function filterScores(userId, year, month) {
         var url = '@Url.Action("ListScores", "Score")' + '?id=' + userId + '&year=' + year + '&month=' + month;
 
@@ -92,9 +119,12 @@
                     // Tablo yoksa, içeriği ekle
                     scoreDetails.html(data);
                 }
+
+                // Modalı aç
+                $('#scoreModal').modal('show');
             },
             error: function () {
-                alert("Veriye erişirken bir hata oluştu.");
+                alert("An error occurred while accessing the data.");
             }
         });
     }

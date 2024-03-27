@@ -39,12 +39,15 @@ namespace HD_Veriler.Controllers
 
         public async Task<IActionResult> PersonelDetailsIndex(int departmanId)
         {
+            
 
+            // Kullanıcıları getirirken LINQ sorgusunu kullanarak Departman liderini filtrele
             var users = await _dependencyService.GetUserRepository().GetAllAsync();
-            users = users.Where(u => u.DepartmanID == departmanId && u.Active);
+            users = users.Where(u => u.DepartmanID == departmanId && u.Active && !u.DepartmanLeader);
 
             return View(users);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> ScoreIndex(int? id)

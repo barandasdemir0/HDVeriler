@@ -4,6 +4,7 @@ using HD_Veriler.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HD_Veriler.Migrations
 {
     [DbContext(typeof(HDVerilerContext))]
-    partial class HDVerilerContextModelSnapshot : ModelSnapshot
+    [Migration("20240328130549_28.03.2024_2")]
+    partial class _28032024_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -249,25 +252,6 @@ namespace HD_Veriler.Migrations
                     b.HasKey("OtherInventoryId");
 
                     b.ToTable("OtherInventorys");
-                });
-
-            modelBuilder.Entity("HD_Veriler.Models.Role", b =>
-                {
-                    b.Property<int>("RolID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RolID"));
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("RolName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RolID");
-
-                    b.ToTable("roles");
                 });
 
             modelBuilder.Entity("HD_Veriler.Models.Score", b =>

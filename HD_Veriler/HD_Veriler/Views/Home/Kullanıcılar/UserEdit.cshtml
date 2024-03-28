@@ -39,6 +39,17 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="control-label">Rol Seçiniz</label>
+                                @Html.DropDownList("RolID",
+                                         (IEnumerable<SelectListItem>?)ViewData["rolesList"],
+                                         "Rol Seçiniz",
+                                         new
+                                         {
+                                             @class = "form-control form-control-modern",
+                                         })
+                            </div>
+
+                            <div class="form-group">
                                 <label class="control-label">IP Adresini Giriniz</label>
                                 <input type="text" asp-for="IPV4Adress" class="form-control form-control-modern"  />
                                 <span asp-validation-for="IPV4Adress"></span>

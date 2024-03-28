@@ -15,6 +15,7 @@ namespace HD_Veriler.Repositories.Abstractions
         IRepository<OtherInventory> GetOtherInventoryRepository();
         IRepository<Score> GetScoreRepository();
         IRepository<UQuestion> GetQuestionRepository();
+        IRepository<Role> GetRoleRepository();
         IMapper GetMapper();
     }
 }

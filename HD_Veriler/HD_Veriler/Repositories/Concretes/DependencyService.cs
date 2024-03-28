@@ -16,6 +16,7 @@ namespace HD_Veriler.Repositories.Concretes
         private readonly IRepository<OtherInventory> _otherInventory;
         private readonly IRepository<Score> _scoreRepository;
         private readonly IRepository<UQuestion> _uquestionRepository;
+        private readonly IRepository<Role> _roleRepository;
         private readonly IMapper _mapper;
 
         public DependencyService(
@@ -29,6 +30,7 @@ namespace HD_Veriler.Repositories.Concretes
             IRepository<OtherInventory> otherInventory,
             IRepository<Score> scoreRepository,
              IRepository<UQuestion> uquestionRepository,
+              IRepository<Role> roleRepository,
             IMapper mapper)
         {
             _computerRepository = computerRepository;
@@ -41,6 +43,7 @@ namespace HD_Veriler.Repositories.Concretes
             _otherInventory = otherInventory;
             _scoreRepository = scoreRepository;
             _uquestionRepository = uquestionRepository;
+            _roleRepository = roleRepository;
             _mapper = mapper;
         }
 
@@ -93,7 +96,10 @@ namespace HD_Veriler.Repositories.Concretes
         {
             return _uquestionRepository;
         }
-
+        public IRepository<Role> GetRoleRepository()
+        {
+            return _roleRepository;
+        }
         public IMapper GetMapper()
         {
             return _mapper;

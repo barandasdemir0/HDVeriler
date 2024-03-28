@@ -227,6 +227,7 @@ namespace HD_Veriler.Controllers
             }
             return View(soru);
         }
+
         [HttpPost,ActionName("SoruDelete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SoruDelete(int id)

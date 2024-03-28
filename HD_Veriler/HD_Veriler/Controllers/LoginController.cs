@@ -79,11 +79,11 @@ namespace HD_Veriler.Controllers
             var roles = new List<string>();
 
             // Kullanıcının rol bilgilerini al
-            if (user.Role == "admin")
+            if (user.RolID == 1)
             {
                 roles.Add("admin");
             }
-            else if (user.Role == "editör")
+            else if (user.RolID == 2)
             {
                 roles.Add("editör");
             }

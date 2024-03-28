@@ -27,5 +27,7 @@ namespace HD_Veriler.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Score> Scores { get; set; }
         public DbSet<UQuestion> uQuestions { get; set; }
+
+        public DbSet<Role> roles { get; set; }
     }
 }

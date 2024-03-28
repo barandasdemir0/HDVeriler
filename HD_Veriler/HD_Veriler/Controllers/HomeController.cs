@@ -145,6 +145,22 @@ namespace HD_Veriler.Controllers
             return View();
         }
 
+        public async Task<IActionResult> RolFill()
+        {
+         
+            var roles = await _dependencyService.GetRoleRepository().GetAllAsync();
+            roles = roles.Where(d => d.Active).ToList();
+            ViewData["rolesList"] = roles
+                .Select(k => new SelectListItem
+                {
+                    Text = k.RolName ?? "Belirtilmemiş",
+                    Value = k.RolID.ToString()
+                })
+                .ToList();
+
+            return View();
+        }
+
         #endregion
 
         #region //computer kodları
@@ -290,6 +306,7 @@ namespace HD_Veriler.Controllers
         public async Task<IActionResult> UserCreate()
         {
             await departmentFill();
+            await RolFill();
             return View("Kullanıcılar/UserCreate");
         }
 
@@ -308,6 +325,7 @@ namespace HD_Veriler.Controllers
             }
             TempData["Message"] = "Kullanıcı Eklenemedi";
             await departmentFill();
+            await RolFill();
             return View("Kullanıcılar/UserCreate",model);
         }
 
@@ -315,6 +333,7 @@ namespace HD_Veriler.Controllers
         public async Task<IActionResult> UserEdit(int id)
         {
             await departmentFill();
+            await RolFill();
             var userDetail = await _dependencyService.GetUserRepository().GetByIdAsync(id);
             if (userDetail == null)
             {
@@ -329,7 +348,8 @@ namespace HD_Veriler.Controllers
         public async Task<IActionResult> UserEdit(User model)
         {
             await departmentFill();
-           
+            await RolFill();
+
 
             if (ModelState.IsValid)
             {
@@ -1063,7 +1083,112 @@ namespace HD_Veriler.Controllers
         #endregion
 
 
+        #region rol işlemleri
 
+        //RolIndex
+        [HttpGet]
+        public async Task<IActionResult> RolIndex()
+        {
+            var rol = await _dependencyService.GetRoleRepository().GetAllAsync();
+            return View(rol);
+        }
+
+        [HttpGet] 
+        public IActionResult RoleCreate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RoleCreate(Role model)
+        {
+            if (ModelState.IsValid)
+            {
+                var rolDTO = _dependencyService.GetMapper().Map<Role>(model);
+                await _dependencyService.GetRoleRepository().AddAsync(rolDTO);
+                TempData["Message"] = "Rol Eklendi";
+                return RedirectToAction(nameof(RolIndex));
+            }
+            TempData["Message"] = "Rol Eklenemedi";
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RolEdit(int id)
+        {
+            var rol = await _dependencyService.GetRoleRepository().GetByIdAsync(id);
+            if (rol == null)
+            {
+                return NotFound();
+            }
+            return View(rol);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RolEdit(Role model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _dependencyService.GetRoleRepository().UpdateAsync(model);
+                TempData["Message"] = "Rol Güncellendi";
+                return RedirectToAction(nameof(RolIndex));
+            }
+            TempData["Message"] = "Rol Güncellenemedi";
+            return View(model);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> RolDelete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var rol = await _dependencyService.GetRoleRepository().GetByIdAsync(id.Value);
+            if (rol == null)
+            {
+                return NotFound();
+            }
+            return View(rol);
+        }
+
+        [HttpPost, ActionName("RolDelete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RolDelete(int id)
+        {
+            var rol = await _dependencyService.GetRoleRepository().GetByIdAsync(id);
+            if (rol == null)
+            {
+                TempData["Message"] = "Rol Silinemedi";
+                return NotFound();
+            }
+            if (rol?.Active != null)
+            {
+                rol.Active = false;
+                await _dependencyService.GetRoleRepository().UpdateAsync(rol);
+            }
+            TempData["Message"] = "Rol Silindi";
+            return RedirectToAction(nameof(RolIndex));
+        }
+
+        public async Task<IActionResult> RolDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var rol = await _dependencyService.GetRoleRepository().GetByIdAsync(id.Value);
+            if (rol == null)
+            {
+                return NotFound();
+            }
+            return View(rol);
+        }
+
+
+
+        #endregion
 
 
 

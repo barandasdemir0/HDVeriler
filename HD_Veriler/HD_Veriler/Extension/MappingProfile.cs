@@ -18,6 +18,7 @@ namespace HD_Veriler.Extension
             CreateMap<User, DTOUser>().ReverseMap();
             CreateMap<Score, DTOScore>().ReverseMap();
             CreateMap<UQuestion, DTOUQestion>().ReverseMap();
+            CreateMap<Role, DTORole>().ReverseMap();
 
         }
     }

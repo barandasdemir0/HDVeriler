@@ -1,0 +1,63 @@
+﻿@model Role
+@{
+    ViewData["Title"] = "RolEdit";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<form class="ecommerce-form action-buttons-fixed" role="form" asp-action="/Home/RolEdit" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+
+                    <div class="text-center mb-4">
+                        <h2 class="card-big-info-title">Soru Bilgileri</h2>
+                        <p class="card-big-info-desc">Rol bilgilerini tüm ayrıntılar ve gerekli bilgilerle birlikte buraya ekleyin.</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label">Rol</label>
+                                <input type="text" asp-for="RolName" class="form-control form-control-modern" />
+                                <span asp-validation-for="RolName"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="control-label">Rol aktif mi?</label>
+                                <div class="form-check">
+                                    <input type="checkbox" asp-for="Active" class="form-check-input" />
+                                    <label class="form-check-label">Aktif</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <input type="hidden" asp-for="RolID" />
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-8 text-center">
+            <button type="submit" value="KAYDET" class="btn btn-success btn-lg" asp-action="RolEdit">
+                <i class="bx bx-save"></i> Soruyu Güncelle
+            </button>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-8 text-center">
+            <a asp-action="RolIndex" class="btn btn-light btn-lg">
+                Geri
+            </a>
+        </div>
+    </div>
+</form>
+

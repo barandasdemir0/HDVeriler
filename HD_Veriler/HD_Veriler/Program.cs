@@ -13,6 +13,7 @@ using System.Reflection;
 using FluentValidation;
 using Microsoft.AspNetCore.Hosting;
 using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 
 
@@ -35,7 +36,12 @@ builder.Services.AddSession(option =>
 builder.Services.AddHttpContextAccessor();
 
 
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+	options.Cookie.Name = "NetCoreMvc.Auth";
+	options.LoginPath = "/Home/Index";
+	options.AccessDeniedPath = "/Home/Index";
+});
 
 
 
@@ -78,7 +84,9 @@ app.UseStatusCodePagesWithReExecute("/Home/Error404", "?code={0}");
 app.UseSession();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
 	name: "default",

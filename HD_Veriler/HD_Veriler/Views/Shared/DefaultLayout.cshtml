@@ -150,6 +150,8 @@
                                         </li>
                                     </ul>
                                 </li>
+                            @if (User.IsInRole("admin"))
+                            {
 
                                 <li class="nav-parent">
                                     <a class="nav-link" href="#">
@@ -164,14 +166,16 @@
                                             </a>
                                         </li>
 
-                                    <li>
-                                        <a class="nav-link" href="/Score/SoruIndex">
-                                            Soru Gir
-                                        </a>
-                                    </li>   
-                                   
-                                </ul>
+                                        <li>
+                                            <a class="nav-link" href="/Score/SoruIndex">
+                                                Soru Gir
+                                            </a>
+                                        </li>
+
+                                    </ul>
                                 </li>
+
+                            }
 
                                 <li class="nav-parent">
                                     <a class="nav-link" href="#">

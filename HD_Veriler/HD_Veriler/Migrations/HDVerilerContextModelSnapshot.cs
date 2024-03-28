@@ -253,9 +253,11 @@ namespace HD_Veriler.Migrations
 
             modelBuilder.Entity("HD_Veriler.Models.Score", b =>
                 {
-                    b.Property<Guid>("ScoreID")
+                    b.Property<int>("ScoreID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScoreID"));
 
                     b.Property<string>("Answer")
                         .HasColumnType("nvarchar(max)");
@@ -329,6 +331,9 @@ namespace HD_Veriler.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")

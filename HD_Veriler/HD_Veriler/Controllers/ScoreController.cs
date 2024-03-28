@@ -8,9 +8,12 @@ using HD_Veriler.Helpers;
 using Microsoft.EntityFrameworkCore;
 using HD_Veriler.Validators;
 using Microsoft.CodeAnalysis;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HD_Veriler.Controllers
 {
+
+    [Authorize(Roles = "admin")]
     public class ScoreController : Controller
     {
         #region tanımlamalar 
@@ -36,7 +39,7 @@ namespace HD_Veriler.Controllers
 
             return View(departmen);
         }
-
+       
         public async Task<IActionResult> PersonelDetailsIndex(int departmanId)
         {
             

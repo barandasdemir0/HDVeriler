@@ -14,5 +14,6 @@
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int? LeadingDepartmentID { get; set; } // Yeni eklenen alan
+        public string? Role { get; set; }
     }
 }

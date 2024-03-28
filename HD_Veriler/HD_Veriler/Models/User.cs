@@ -43,5 +43,8 @@ namespace HD_Veriler.Models
 
         [DisplayName("LİDERLİK ETTİĞİ DEPARTMAN")]
         public int? LeadingDepartmentID { get; set; } // Yeni eklenen alan
+
+        [DisplayName("ROL")]
+        public string? Role { get; set; } // Kullanıcı rolü (örneğin: Admin, User, Editor)
     }
 }

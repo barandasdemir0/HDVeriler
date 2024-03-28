@@ -6,7 +6,7 @@ namespace HD_Veriler.Models
 {
     public class Score
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]    
+        //[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ScoreID { get; set; }
 
         [DisplayName("Puanlayacağın Kişi")]

@@ -1082,7 +1082,6 @@ namespace HD_Veriler.Controllers
 
         #endregion
 
-
         #region rol işlemleri
 
         //RolIndex
@@ -1090,13 +1089,13 @@ namespace HD_Veriler.Controllers
         public async Task<IActionResult> RolIndex()
         {
             var rol = await _dependencyService.GetRoleRepository().GetAllAsync();
-            return View(rol);
+            return View("Role/RolIndex", rol);
         }
 
         [HttpGet] 
         public IActionResult RoleCreate()
         {
-            return View();
+            return View("Role/RoleCreate");
         }
 
         [HttpPost]
@@ -1110,7 +1109,7 @@ namespace HD_Veriler.Controllers
                 return RedirectToAction(nameof(RolIndex));
             }
             TempData["Message"] = "Rol Eklenemedi";
-            return View(model);
+            return View("Role/RoleCreate", model);
         }
 
         [HttpGet]
@@ -1121,7 +1120,7 @@ namespace HD_Veriler.Controllers
             {
                 return NotFound();
             }
-            return View(rol);
+            return View("Role/RolEdit", rol);
         }
 
         [HttpPost]
@@ -1134,7 +1133,7 @@ namespace HD_Veriler.Controllers
                 return RedirectToAction(nameof(RolIndex));
             }
             TempData["Message"] = "Rol Güncellenemedi";
-            return View(model);
+            return View("Role/RolEdit", model);
         }
 
 
@@ -1150,7 +1149,7 @@ namespace HD_Veriler.Controllers
             {
                 return NotFound();
             }
-            return View(rol);
+            return View("Role/RolDelete", rol);
         }
 
         [HttpPost, ActionName("RolDelete")]
@@ -1183,20 +1182,12 @@ namespace HD_Veriler.Controllers
             {
                 return NotFound();
             }
-            return View(rol);
+            return View("Role/RolDetails", rol);
         }
 
 
 
         #endregion
-
-
-
-
-
-
-
-
 
 
     }

@@ -359,8 +359,4 @@
     <TypeScriptCompile Include="wwwroot\vendor\simple-line-icons\node_modules\make-dir\index.d.ts" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Home\Role\" />
-  </ItemGroup>
-
 </Project>

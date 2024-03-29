@@ -7,11 +7,11 @@ namespace HD_Veriler.Models
     public class ProjectCategory
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [DisplayName("Proje ID")]
+       
         public int ProjeCategoryID { get; set; }
 
         [DisplayName("Kategori Adı")]
-        public int ProjeCategoryName { get; set; }
+        public string? ProjeCategoryName { get; set; }
 
         [DisplayName("Aktif/Pasif")]
         public bool Active { get; set; }

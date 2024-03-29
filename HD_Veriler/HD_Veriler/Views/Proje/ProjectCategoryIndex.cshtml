@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProjectCategory>
+@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore
+@{
+    ViewData["Title"] = "ProjectCategoryIndex";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<section class="card">
+    <header class="card-header">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle><i class="fas fa-chevron-up"></i></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss><i class="fas fa-times"></i></a>
+        </div>
+        <h2 class="card-title">Departman Bilgileri</h2>
+    </header>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <a asp-action="ProjectCategoryCreate" asp-controller="Proje" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Yeni Proje Kategorisi Ekle
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Proje Kategori Adı</th>
+                        <th>Aktif mi?</th>
+                        <th style="text-align: right;">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        string? departmanName = item.Active ? item.ProjeCategoryName : "Olmayan Proje Kategorisi";
+                        string background = item.Active ? "" : "bg-danger";
+                        <tr class="@background">
+                            <td>@departmanName</td>
+                            <td>@(item.Active ? "Evet" : "Hayır")</td>
+                            <td style="text-align: right;">
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-info" asp-action="ProjectCategoryDetails" asp-route-id="@item.ProjeCategoryID" title="Detayları Görüntüle">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a class="btn btn-warning" asp-action="ProjectCategoryEdit" asp-route-id="@item.ProjeCategoryID" title="Düzenle">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger" asp-action="ProjectCategoryDelete" asp-route-id="@item.ProjeCategoryID" title="Sil">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+

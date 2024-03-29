@@ -1209,7 +1209,6 @@ namespace HD_Veriler.Controllers
 
         #endregion
 
-
         #region job işlemleri
 
 
@@ -1280,7 +1279,7 @@ namespace HD_Veriler.Controllers
             return View("Job/JobDelete", job);
         }
 
-        [HttpPost, ActionName("RolDelete")]
+        [HttpPost, ActionName("JobDelete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> JobDelete(int id)
         {
@@ -1295,7 +1294,7 @@ namespace HD_Veriler.Controllers
                 job.Active = false;
                 await _dependencyService.GetJobRepository().UpdateAsync(job);
             }
-            TempData["Message"] = "Rol Silindi";
+            TempData["Message"] = "Meslek Silindi";
             return RedirectToAction(nameof(JobIndex));
         }
 

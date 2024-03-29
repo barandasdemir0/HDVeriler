@@ -161,6 +161,23 @@ namespace HD_Veriler.Controllers
             return View();
         }
 
+
+        public async Task<IActionResult> jobFill()
+        {
+
+            var roles = await _dependencyService.GetJobRepository().GetAllAsync();
+            roles = roles.Where(d => d.Active).ToList();
+            ViewData["jobList"] = roles
+                .Select(k => new SelectListItem
+                {
+                    Text = k.JobName.ToString() ?? "Belirtilmemiş",
+                    Value = k.JobID.ToString()
+                })
+                .ToList();
+
+            return View();
+        }
+
         #endregion
 
         #region //computer kodları
@@ -307,6 +324,7 @@ namespace HD_Veriler.Controllers
         {
             await departmentFill();
             await RolFill();
+            await jobFill();
             return View("Kullanıcılar/UserCreate");
         }
 
@@ -326,6 +344,7 @@ namespace HD_Veriler.Controllers
             TempData["Message"] = "Kullanıcı Eklenemedi";
             await departmentFill();
             await RolFill();
+            await jobFill();
             return View("Kullanıcılar/UserCreate",model);
         }
 
@@ -334,6 +353,7 @@ namespace HD_Veriler.Controllers
         {
             await departmentFill();
             await RolFill();
+            await jobFill();
             var userDetail = await _dependencyService.GetUserRepository().GetByIdAsync(id);
             if (userDetail == null)
             {
@@ -349,7 +369,7 @@ namespace HD_Veriler.Controllers
         {
             await departmentFill();
             await RolFill();
-
+            await jobFill();
 
             if (ModelState.IsValid)
             {
@@ -1189,6 +1209,113 @@ namespace HD_Veriler.Controllers
 
         #endregion
 
+
+        #region job işlemleri
+
+
+        [HttpGet]
+        public async Task<IActionResult> JobIndex()
+        {
+            var jobs = await _dependencyService.GetJobRepository().GetAllAsync();
+            return View("Job/JobIndex", jobs);
+        }
+
+        [HttpGet]
+        public IActionResult JobCreate()
+        {
+            return View("Job/JobCreate");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> JobCreate(Job model)
+        {
+            if (ModelState.IsValid)
+            {
+                var jobDTO = _dependencyService.GetMapper().Map<Job>(model);
+                await _dependencyService.GetJobRepository().AddAsync(jobDTO);
+                TempData["Message"] = "Meslek Eklendi";
+                return RedirectToAction(nameof(JobIndex));
+            }
+            TempData["Message"] = "Meslek Eklenemedi";
+            return View("Job/JobCreate", model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> JobEdit(int id)
+        {
+            var job = await _dependencyService.GetJobRepository().GetByIdAsync(id);
+            if (job == null)
+            {
+                return NotFound();
+            }
+            return View("Job/JobEdit", job);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> JobEdit(Job model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _dependencyService.GetJobRepository().UpdateAsync(model);
+                TempData["Message"] = "Meslek Güncellendi";
+                return RedirectToAction(nameof(JobIndex));
+            }
+            TempData["Message"] = "Meslek Güncellenemedi";
+            return View("Job/JobEdit", model);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> JobDelete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var job = await _dependencyService.GetJobRepository().GetByIdAsync(id.Value);
+            if (job == null)
+            {
+                return NotFound();
+            }
+            return View("Job/JobDelete", job);
+        }
+
+        [HttpPost, ActionName("RolDelete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> JobDelete(int id)
+        {
+            var job = await _dependencyService.GetJobRepository().GetByIdAsync(id);
+            if (job == null)
+            {
+                TempData["Message"] = "Meslek Silinemedi";
+                return NotFound();
+            }
+            if (job?.Active != null)
+            {
+                job.Active = false;
+                await _dependencyService.GetJobRepository().UpdateAsync(job);
+            }
+            TempData["Message"] = "Rol Silindi";
+            return RedirectToAction(nameof(JobIndex));
+        }
+
+        public async Task<IActionResult> JobDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var job = await _dependencyService.GetJobRepository().GetByIdAsync(id.Value);
+            if (job == null)
+            {
+                return NotFound();
+            }
+            return View("Job/JobDetails", job);
+        }
+
+
+
+        #endregion
 
     }
 }

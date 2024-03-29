@@ -34,6 +34,9 @@ namespace HD_Veriler.Extension
             services.AddScoped<IRepository<Score>, Repository<Score>>();
             services.AddScoped<IRepository<UQuestion>, Repository<UQuestion>>();
             services.AddScoped<IRepository<Role>, Repository<Role>>();
+            services.AddScoped<IRepository<Job>, Repository<Job>>();
+            services.AddScoped<IRepository<Project>, Repository<Project>>();
+            services.AddScoped<IRepository<ProjectCategory>, Repository<ProjectCategory>>();
             return services;
         }
     }

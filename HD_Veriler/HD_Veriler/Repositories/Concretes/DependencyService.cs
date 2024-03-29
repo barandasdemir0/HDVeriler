@@ -17,6 +17,9 @@ namespace HD_Veriler.Repositories.Concretes
         private readonly IRepository<Score> _scoreRepository;
         private readonly IRepository<UQuestion> _uquestionRepository;
         private readonly IRepository<Role> _roleRepository;
+        private readonly IRepository<Job> _jobRepository;
+        private readonly IRepository<Project> _projectRepository;
+        private readonly IRepository<ProjectCategory> _projectCategoryRepository;
         private readonly IMapper _mapper;
 
         public DependencyService(
@@ -29,8 +32,11 @@ namespace HD_Veriler.Repositories.Concretes
             IRepository<MonitorDetail> monitorDetail,
             IRepository<OtherInventory> otherInventory,
             IRepository<Score> scoreRepository,
-             IRepository<UQuestion> uquestionRepository,
-              IRepository<Role> roleRepository,
+            IRepository<UQuestion> uquestionRepository,
+            IRepository<Role> roleRepository,
+            IRepository<Job> jobRepository,
+            IRepository<Project> projectRepository,
+            IRepository<ProjectCategory> projectCategoryRepository,
             IMapper mapper)
         {
             _computerRepository = computerRepository;
@@ -44,9 +50,13 @@ namespace HD_Veriler.Repositories.Concretes
             _scoreRepository = scoreRepository;
             _uquestionRepository = uquestionRepository;
             _roleRepository = roleRepository;
+            _jobRepository = jobRepository;
+            _projectRepository = projectRepository;
+            _projectCategoryRepository = projectCategoryRepository;
             _mapper = mapper;
         }
 
+       
         public IRepository<ComputerDetail> GetComputerRepository()
         {
             return _computerRepository;
@@ -99,6 +109,19 @@ namespace HD_Veriler.Repositories.Concretes
         public IRepository<Role> GetRoleRepository()
         {
             return _roleRepository;
+        }
+
+        public IRepository<Job> GetJobRepository()
+        {
+            return _jobRepository;
+        }
+        public IRepository<Project> GetProjectRepository()
+        {
+            return _projectRepository;
+        }
+        public IRepository<ProjectCategory> GetProjectCategoryRepository()
+        {
+            return _projectCategoryRepository;
         }
         public IMapper GetMapper()
         {

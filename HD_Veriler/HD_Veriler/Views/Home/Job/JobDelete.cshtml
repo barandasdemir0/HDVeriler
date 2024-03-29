@@ -1,0 +1,46 @@
+﻿@model Job
+@using HD_Veriler.Helpers;
+@using Microsoft.EntityFrameworkCore;
+@{
+    ViewData["Title"] = "JobDelete";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<section class="card">
+    <header class="card-header">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+        </div>
+        <h2 class="card-title">Meslek Bilgileri</h2>
+    </header>
+    <div class="card-body">
+        <table class="table table-bordered table-striped mb-0" id="datatable-editable" style="font-size: 15px;">
+            <thead>
+                <tr>
+                    <th>Meslek Adı</th>
+                    <th>Aktif mi?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.JobName)</td>
+                    <td>@Html.DisplayFor(model => model.Active)</td>
+                </tr>
+            </tbody>
+        </table>
+        <form asp-action="DepartmanDelete" method="post">
+            <input type="hidden" asp-for="JobID" />
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="text-center">
+                        <input type="submit" value="Departmanı Sil" onclick="return confirm('Silmek istediğinden emin misin?')" class="btn btn-danger">
+                        <a asp-action="JobIndex" class="btn btn-secondary ml-2">Geri</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+

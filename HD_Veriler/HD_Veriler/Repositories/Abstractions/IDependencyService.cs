@@ -16,6 +16,9 @@ namespace HD_Veriler.Repositories.Abstractions
         IRepository<Score> GetScoreRepository();
         IRepository<UQuestion> GetQuestionRepository();
         IRepository<Role> GetRoleRepository();
+        IRepository<Job> GetJobRepository();
+        IRepository<Project> GetProjectRepository();
+        IRepository<ProjectCategory> GetProjectCategoryRepository();
         IMapper GetMapper();
     }
 }

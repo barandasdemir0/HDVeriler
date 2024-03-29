@@ -1,0 +1,42 @@
+﻿@model Job
+@using HD_Veriler.Helpers
+@using Microsoft.EntityFrameworkCore;
+@{
+    ViewData["Title"] = "JobDetails";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    var context = DbContextHelper.CreateContext();
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <section class="card">
+            <header class="card-header text-center">
+                <h2 class="card-title">@ViewBag.username</h2>
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                </div>
+            </header>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td><strong>Departman Adı:</strong></td>
+                            <td>@Html.DisplayFor(model => model.JobName)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aktif mi?</strong></td>
+                            <td>@Html.DisplayFor(model => model.Active)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div class="mt-3 text-center">
+            <a asp-action="JobIndex" class="btn btn-success btn-lg px-5">
+                <i class="bx bx-arrow-back"></i> Mesleklere Geri Dön
+            </a>
+        </div>
+    </div>
+</div>
+

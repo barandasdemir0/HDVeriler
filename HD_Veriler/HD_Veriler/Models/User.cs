@@ -14,6 +14,9 @@ namespace HD_Veriler.Models
         [DisplayName("BULUNDUĞU DEPARTMAN")]
         public int DepartmanID { get; set; }
 
+        [DisplayName("BULUNDUĞU GÖREV")]
+        public int JobID { get; set; }
+
         [DisplayName("ADI SOYADI")]
         public string? NameSurname { get; set; }
 
@@ -31,6 +34,12 @@ namespace HD_Veriler.Models
 
         [DisplayName("ŞİFRE")]
         public string? Password { get; set; }
+
+        [DisplayName("Bulunduğu KAT")]
+        public string? Kat { get; set; }
+
+        [DisplayName("Bulunduğu ODA")]
+        public string? Room { get; set; }
 
         [DisplayName("DEPARTMAN LİDER Mİ?")]
         public bool DepartmanLeader { get; set; }
